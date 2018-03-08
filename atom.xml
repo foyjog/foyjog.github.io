@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://foyjog.github.io/"/>
-  <updated>2018-03-08T13:40:28.742Z</updated>
+  <updated>2018-03-08T13:45:40.254Z</updated>
   <id>https://foyjog.github.io/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>reversing.kr-writeup（陆续更新）</title>
+    <link href="https://foyjog.github.io/2018/03/08/reversing-kr-writeup%EF%BC%88%E9%99%86%E7%BB%AD%E6%9B%B4%E6%96%B0%EF%BC%89/"/>
+    <id>https://foyjog.github.io/2018/03/08/reversing-kr-writeup（陆续更新）/</id>
+    <published>2018-03-08T13:43:34.000Z</published>
+    <updated>2018-03-08T13:45:40.254Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>逆向还是很好玩的，这个reversing.kr的韩国网站，题目还是很有质量的，过年接近一个月，每天做几道题目还是比较舒服的，做着做着也就还剩几道题目没做了，这里先把做过的慢慢记录下来，以后还可以经常返回来看一下，不至于做过就忘了。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;概述&quot;&gt;&lt;a href=&quot;#概述&quot; class=&quot;headerlink&quot; title=&quot;概述&quot;&gt;&lt;/a&gt;概述&lt;/h1&gt;&lt;p&gt;逆向还是很好玩的，这个reversing.kr的韩国网站，题目还是很有质量的，过年接近一个月，每天做几道题目还是比较舒服的，做着做着也就还剩
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>pwnable.tw-writeup(持续更新中)</title>
