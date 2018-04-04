@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://foyjog.github.io/"/>
-  <updated>2018-04-04T09:16:01.256Z</updated>
+  <updated>2018-04-04T09:22:02.173Z</updated>
   <id>https://foyjog.github.io/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>强网杯的hide思路解析</title>
+    <link href="https://foyjog.github.io/2018/04/04/%E5%BC%BA%E7%BD%91%E6%9D%AF%E7%9A%84hide%E6%80%9D%E8%B7%AF%E8%A7%A3%E6%9E%90/"/>
+    <id>https://foyjog.github.io/2018/04/04/强网杯的hide思路解析/</id>
+    <published>2018-04-04T09:19:42.000Z</published>
+    <updated>2018-04-04T09:22:02.173Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>这个题目其实，，，我最后没有得出确切的结论，因为比赛已经结束了，没有机会验证。<br>这个题一看，很容易得出是个linux下的upx程序，脱壳对于我来说是不可能了，除了利用upx -d这种试了一下发现没啥鸟用，就没有再关心这个壳，其实压缩壳加密壳直接带壳跑也没啥。</p><h1 id="思路流程"><a href="#思路流程" class="headerlink" title="思路流程"></a>思路流程</h1>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;概述&quot;&gt;&lt;a href=&quot;#概述&quot; class=&quot;headerlink&quot; title=&quot;概述&quot;&gt;&lt;/a&gt;概述&lt;/h1&gt;&lt;p&gt;这个题目其实，，，我最后没有得出确切的结论，因为比赛已经结束了，没有机会验证。&lt;br&gt;这个题一看，很容易得出是个linux下的upx程序，脱
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>0ctf的g0g0g0解析</title>
