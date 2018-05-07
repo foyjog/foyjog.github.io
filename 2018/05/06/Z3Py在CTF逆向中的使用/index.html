@@ -1,4 +1,56 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="foyjog"><title>Z3Py在CTF逆向中的使用 · foyjog</title><meta name="description" content="前言Z3是Microsoft Research开发的高性能定理证明器。Z3拥有者非常广泛的应用场景：软件/硬件验证和测试，约束求解，混合系统分析，安全性研究，生物学研究（计算机分析）以及几何问题。Z3Py是使用Python脚本来解决一些实际问题，Z3Py在windows下的安装可以参考如下链接：ht"><meta name="keywords"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><h3 title=""><a href="/">foyjog</a></h3><div class="description"><p>email:foyjog@163.com</p></div></div></div><ul class="social-links"></ul><div class="footer"><a target="_blank" href="/"><span>Theme by </span></a><a href="https://www.caicai.me"> CaiCai </a><span>&</span><a href="https://github.com/Ben02/hexo-theme-Anatole"> Ben</a><div class="by_farbox"><a href="https://hexo.io/zh-cn/" target="_blank">Proudly published with Hexo&#65281;</a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">首页</a></li><li><a href="/about">关于</a></li><li><a href="/archives">归档</a></li><li><a href="/links">友链</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"> </a></li></div><div class="avatar"><img></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>Z3Py在CTF逆向中的使用</a></h3></div><div class="post-content"><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>Z3是Microsoft Research开发的高性能定理证明器。Z3拥有者非常广泛的应用场景：软件/硬件验证和测试，约束求解，混合系统分析，安全性研究，生物学研究（计算机分析）以及几何问题。<br>Z3Py是使用Python脚本来解决一些实际问题，Z3Py在windows下的安装可以参考如下链接：<a href="https://github.com/Z3Prover/z3/wiki/Using-Z3Py-on-Windows。" target="_blank" rel="noopener">https://github.com/Z3Prover/z3/wiki/Using-Z3Py-on-Windows。</a><br>Z3Py的使用教学可以参考如下链接：<a href="https://ericpony.github.io/z3py-tutorial/guide-examples.htm" target="_blank" rel="noopener">https://ericpony.github.io/z3py-tutorial/guide-examples.htm</a></p>
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Z3Py在CTF逆向中的使用 | foyjog</title>
+  
+  
+  <!--link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css"-->
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+<div class="Shell">
+    <aside class='SideBar'>
+    <section class='avatar' style="background-image: url(/assets/header.png)">
+        <div class='av-pic' style="background-image: url(/assets/tree_small.png)">
+        </div>
+    </section>
+    <section class='menu'>
+        <div>foyjog</div>
+        
+            <div>reversing engineer</div>
+        
+        <ul>
+          
+            <a href="/" class="Btn">
+              <li>主页</li>
+            </a>  
+          
+            <a href="/archives/" class="Btn">
+              <li>归档</li>
+            </a>  
+          
+        </ul>
+    </section>
+    <section class="media">
+        
+    </section>
+</aside>
+
+    <div class="container">
+        <div data-pager-shell>
+            <div>
+  <article class='ContentView'>
+    <header class='PageTitle'>
+        <h1>Z3Py在CTF逆向中的使用</h1>
+    </header>
+
+    <section>
+      <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>Z3是Microsoft Research开发的高性能定理证明器。Z3拥有者非常广泛的应用场景：软件/硬件验证和测试，约束求解，混合系统分析，安全性研究，生物学研究（计算机分析）以及几何问题。<br>Z3Py是使用Python脚本来解决一些实际问题，Z3Py在windows下的安装可以参考如下链接：<a href="https://github.com/Z3Prover/z3/wiki/Using-Z3Py-on-Windows。" target="_blank" rel="noopener">https://github.com/Z3Prover/z3/wiki/Using-Z3Py-on-Windows。</a><br>Z3Py的使用教学可以参考如下链接：<a href="https://ericpony.github.io/z3py-tutorial/guide-examples.htm" target="_blank" rel="noopener">https://ericpony.github.io/z3py-tutorial/guide-examples.htm</a></p>
 <h1 id="CTF逆向中的应用"><a href="#CTF逆向中的应用" class="headerlink" title="CTF逆向中的应用"></a>CTF逆向中的应用</h1><p>现在的CTF逆向中，求解方程式或者求解约束条件是非常常见的一种考察方式，而ctf比赛都是限时的，当我们已经逆向出来flag的约束条件时，可能还需要花一定的时间去求解逆过程。而Z3求解器就给我们提供了一个非常便利求解方式，我们只需要定义未知量（x,y等），然后为这些未知量添加约束方式即可求解。Z3求解器能够求解任意多项式，但是要注意的是，当方程的方式为2**x这种次方运算的时候，方程式已经不是多项式的范畴了，Z3便无法求解。</p>
 <h1 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h1><p>现在我们利用官方文档中的一个例子来粗略的看一下Z3Py的使用。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">x = Int(<span class="string">'x'</span>)</span><br><span class="line">y = Int(<span class="string">'y'</span>)</span><br><span class="line">solve(x &gt; <span class="number">2</span>, y &lt; <span class="number">10</span>, x + <span class="number">2</span>*y == <span class="number">7</span>)</span><br></pre></td></tr></table></figure></p>
 <p>代码非常简单，首先利用Int()定义两个int型未知数x和y，然后利用三个约束条件进行相应的求解：</p>
@@ -25,4 +77,42 @@
 <h2 id="第八届极客大挑战的REConvolution"><a href="#第八届极客大挑战的REConvolution" class="headerlink" title="第八届极客大挑战的REConvolution"></a>第八届极客大挑战的REConvolution</h2><p>我们打开文件，也是比较直观的看到约束条件，我试着逆向了这个过程，花费了挺多的时间，但是如果我们使用Z3Py来求解的话就会非常的快。<br>关键部分如下：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> __<span class="function">cdecl <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> **argv, <span class="keyword">const</span> <span class="keyword">char</span> **envp)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">unsigned</span> <span class="keyword">int</span> ii; <span class="comment">// esi</span></span><br><span class="line">  <span class="keyword">unsigned</span> <span class="keyword">int</span> v4; <span class="comment">// kr00_4</span></span><br><span class="line">  <span class="keyword">char</span> flag_i; <span class="comment">// bl</span></span><br><span class="line">  <span class="keyword">unsigned</span> <span class="keyword">int</span> jj; <span class="comment">// eax</span></span><br><span class="line">  <span class="keyword">char</span> *v7; <span class="comment">// edx</span></span><br><span class="line">  <span class="keyword">char</span> v8; <span class="comment">// cl</span></span><br><span class="line">  <span class="keyword">int</span> v9; <span class="comment">// eax</span></span><br><span class="line">  <span class="keyword">char</span> xor_result[<span class="number">80</span>]; <span class="comment">// [esp+8h] [ebp-A4h]</span></span><br><span class="line">  <span class="keyword">char</span> flag[<span class="number">80</span>]; <span class="comment">// [esp+58h] [ebp-54h]</span></span><br><span class="line"></span><br><span class="line">  sub_DC1020(<span class="string">"Please input your flag: "</span>);</span><br><span class="line">  sub_DC1050(<span class="string">"%40s"</span>, flag);</span><br><span class="line">  <span class="built_in">memset</span>(xor_result, <span class="number">0</span>, <span class="number">0x50</span>u);</span><br><span class="line">  ii = <span class="number">0</span>;</span><br><span class="line">  v4 = <span class="built_in">strlen</span>(flag);</span><br><span class="line">  <span class="keyword">if</span> ( v4 )</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">do</span></span><br><span class="line">    &#123;</span><br><span class="line">      flag_i = flag[ii];</span><br><span class="line">      jj = <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">do</span></span><br><span class="line">      &#123;</span><br><span class="line">        v7 = &amp;xor_result[jj + ii];</span><br><span class="line">        v8 = flag_i ^ data1[jj++];</span><br><span class="line">        *v7 += v8;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">while</span> ( jj &lt; <span class="number">0x20</span> );</span><br><span class="line">      ++ii;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span> ( ii &lt; v4 );</span><br><span class="line">  &#125;</span><br><span class="line">  v9 = <span class="built_in">strcmp</span>(xor_result, (<span class="keyword">const</span> <span class="keyword">char</span> *)&amp;data2);</span><br><span class="line">  <span class="keyword">if</span> ( v9 )</span><br><span class="line">    v9 = -(v9 &lt; <span class="number">0</span>) | <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">if</span> ( v9 )</span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">"No, it isn't."</span>);</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">"Yes, it is."</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>很简洁明了，我们利用Z3Py来进行变量的声明和约束的增加并进行求解<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> z3 <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">s = Solver()</span><br><span class="line">X =  [BitVec((<span class="string">'x%s'</span> % i),<span class="number">8</span>) <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0x22</span>) ]</span><br><span class="line"></span><br><span class="line">data1 =  [<span class="number">0x21</span>,<span class="number">0x22</span>,<span class="number">0x23</span>,<span class="number">0x24</span>,<span class="number">0x25</span>,<span class="number">0x26</span>,<span class="number">0x27</span>,<span class="number">0x28</span>,<span class="number">0x29</span>,<span class="number">0x2A</span>,<span class="number">0x2B</span>,<span class="number">0x2C</span>,<span class="number">0x2D</span>,<span class="number">0x2E</span>,<span class="number">0x2F</span>,<span class="number">0x3A</span>,</span><br><span class="line"><span class="number">0x3B</span>,<span class="number">0x3C</span>,<span class="number">0x3D</span>,<span class="number">0x3E</span>,<span class="number">0x3F</span>,<span class="number">0x40</span>,<span class="number">0x5B</span>,<span class="number">0x5C</span>,<span class="number">0x5D</span>,<span class="number">0x5E</span>,<span class="number">0x5F</span>,<span class="number">0x60</span>,<span class="number">0x7B</span>,<span class="number">0x7C</span>,<span class="number">0x7D</span>,<span class="number">0x7E</span>]</span><br><span class="line"></span><br><span class="line">data2 = [<span class="number">0x72</span>,<span class="number">0xE9</span>,<span class="number">0x4D</span>,<span class="number">0xAC</span>,<span class="number">0xC1</span>,<span class="number">0xD0</span>,<span class="number">0x24</span>,<span class="number">0x6B</span>,<span class="number">0xB2</span>,<span class="number">0xF5</span>,<span class="number">0xFD</span>,<span class="number">0x45</span>,<span class="number">0x49</span>,<span class="number">0x94</span>,<span class="number">0xDC</span>,<span class="number">0x10</span>,</span><br><span class="line"><span class="number">0x10</span>,<span class="number">0x6B</span>,<span class="number">0xA3</span>,<span class="number">0xFB</span>,<span class="number">0x5C</span>,<span class="number">0x13</span>,<span class="number">0x17</span>,<span class="number">0xE4</span>,<span class="number">0x67</span>,<span class="number">0xFE</span>,<span class="number">0x72</span>,<span class="number">0xA1</span>,<span class="number">0xC7</span>,<span class="number">0x04</span>,<span class="number">0x2B</span>,<span class="number">0xC2</span>,</span><br><span class="line"><span class="number">0x9D</span>,<span class="number">0x3F</span>,<span class="number">0xA7</span>,<span class="number">0x6C</span>,<span class="number">0xE7</span>,<span class="number">0xD0</span>,<span class="number">0x90</span>,<span class="number">0x71</span>,<span class="number">0x36</span>,<span class="number">0xB3</span>,<span class="number">0xAB</span>,<span class="number">0x67</span>,<span class="number">0xBF</span>,<span class="number">0x60</span>,<span class="number">0x30</span>,<span class="number">0x3E</span>,</span><br><span class="line"><span class="number">0x78</span>,<span class="number">0xCD</span>,<span class="number">0x6D</span>,<span class="number">0x35</span>,<span class="number">0xC8</span>,<span class="number">0x55</span>,<span class="number">0xFF</span>,<span class="number">0xC0</span>,<span class="number">0x95</span>,<span class="number">0x62</span>,<span class="number">0xE6</span>,<span class="number">0xBB</span>,<span class="number">0x57</span>,<span class="number">0x34</span>,<span class="number">0x29</span>,<span class="number">0x0E</span>,<span class="number">3</span>]</span><br><span class="line"></span><br><span class="line">xor_result = [<span class="number">0</span>]*<span class="number">0x41</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> m <span class="keyword">in</span> range(<span class="number">0</span>,<span class="number">0x22</span>):</span><br><span class="line">    <span class="keyword">for</span> n <span class="keyword">in</span> range(<span class="number">0</span>,<span class="number">0x20</span>):</span><br><span class="line">        xor_result[n+m] += X[m] ^ data1[n]</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> o <span class="keyword">in</span> range(<span class="number">0</span>,<span class="number">0x41</span>):</span><br><span class="line">    s.add(xor_result[o] == data2[o])</span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> s.check()</span><br><span class="line"></span><br><span class="line">m = s.model()</span><br><span class="line"><span class="keyword">print</span> <span class="string">"traversing model..."</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,<span class="number">0x22</span>):</span><br><span class="line">    <span class="keyword">print</span> chr(int(<span class="string">"%s"</span> % (m[X[i]]))),</span><br></pre></td></tr></table></figure></p>
 <p>很简单的几行代码，能够帮助我们获取flag。</p>
-</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2018-05-06</span><i class="fa fa-tag"></i></div></div></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" href="http://twitter.com/home?status=,https://foyjog.github.io/2018/05/06/Z3Py在CTF逆向中的使用/,foyjog,Z3Py在CTF逆向中的使用,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2018/05/07/pwnable-tw-calc/" title="pwnable.tw-calc">上一篇</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2018/05/03/Z3py的教程翻译/" title="Z3py的教程翻译">下一篇</a></li></ul></div></div></div></div></div><script src="/js/jquery.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></body></html>
+
+
+      
+
+    </section>
+    
+      <section class='ArticleMeta'>
+          <div>
+            发布于&nbsp;
+            <time datetime="2018-05-06T09:22:14.000Z" itemprop="datePublished">
+              2018-05-06
+            </time>
+          </div>
+          
+      </section>
+    
+    
+</article>
+
+  
+</div>
+
+            <footer>
+    <div>© 2016 - foyjog </div>
+    <div>
+    Powered by Hexo
+    </div>
+</footer>
+
+        </div>
+    </div>
+</div>
+<script src="/js/pager/dist/singlepager.js"></script>
+<script>
+var sp = new Pager('data-pager-shell')
+
+</script>
+</body>
+</html>
