@@ -265,6 +265,30 @@
 
 <div class="post-preview "
      style="background-image: url('')">
+    <a href="/2018/06/21/Asis-CTF-2016-b00ks/">
+        <h2 class="post-title">
+            Asis CTF 2016 b00ks
+        </h2>
+        <p class="post-meta">
+            <i class="fa fa-calendar" aria-hidden="true"></i> 2018-06-21
+        </p>
+        
+        <div class="post-content-preview">
+            <p>
+                概述这道题目的考察点是off-by-one,其实具体来讲是一个堆溢出，只不过这个堆溢出只能溢出一个字节而已，但是通过这一个字节就能导致能够构建一个堆上的fake trunk，从而进行一个任意地址的读写操作。
+整体操作程序其实很好看懂，是一个图书管理系统。123456789101112131415..
+            </p>
+        </div>
+    </a>
+
+</div>
+
+<hr>
+
+
+
+<div class="post-preview "
+     style="background-image: url('')">
     <a href="/2018/05/07/pwnable-tw-calc/">
         <h2 class="post-title">
             pwnable.tw-calc
@@ -469,29 +493,6 @@ Start基础题目，拿过来进行分析，拖入ida，发现代码不多123456
                 概述这道题目非常的有意思，但也花了我很多时间来求解，题目是利用了vim中的操作来模拟程序的运行，在vim中输入正确的flag，然后再输入GY@”进行flag的验证。这道题目出的非常的有技巧。
 思路流程
 GY@” 这四个命令的意思为：转到最后一行，复制整行，利用执行寄存器命令@”来执行刚才复制的最..
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-
-<div class="post-preview "
-     style="background-image: url('')">
-    <a href="/2018/01/18/Boxoft-Wav-to-MP3-freeware-中的SEH漏洞利用/">
-        <h2 class="post-title">
-            Boxoft Wav to MP3 (freeware)中的SEH漏洞利用
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2018-01-18
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                概述这个是我在吾爱破解看到的一个漏洞，感觉不显得那么复杂，就顺手拿过来研究一下seh的利用。这里写一写我的研究流程，文件在后续连接给出。当然要不了解seh的话还是看一看seh详细介绍即可，文章写得非常好。这个软件功能是一个吧wav文件转换成一个MP3文件，漏洞产生的主要原因是没有对输入的文件做任..
             </p>
         </div>
     </a>
