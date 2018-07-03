@@ -1,6 +1,132 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="foyjog"><title>Z3py的教程翻译 · foyjog</title><meta name="description" content="写在前面Z3Py感觉在逆向方面还是挺好用的，最近把教程看了一下，然后做一下翻译。
-致谢这是Leonardo de Moura的Z3Py教程的归档版本。Sorig进行了语法的校对。
-python中的Z3 APIZ3是Microsoft Research开发的高性能定理证明器。Z3拥有者非常广泛的应用场"><meta name="keywords"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><h3 title=""><a href="/">foyjog</a></h3><div class="description"><p>email:foyjog@163.com</p></div></div></div><ul class="social-links"></ul><div class="footer"><a target="_blank" href="/"><span>Theme by </span></a><a href="https://www.caicai.me"> CaiCai </a><span>&</span><a href="https://github.com/Ben02/hexo-theme-Anatole"> Ben</a><div class="by_farbox"><a href="https://hexo.io/zh-cn/" target="_blank">Proudly published with Hexo&#65281;</a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">主页</a></li><li><a href="/about">关于</a></li><li><a href="/archives">归档</a></li><li><a href="/links">链接</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"> </a></li></div><div class="avatar"><img></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>Z3py的教程翻译</a></h3></div><div class="post-content"><h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p>Z3Py感觉在逆向方面还是挺好用的，最近把教程看了一下，然后做一下翻译。</p>
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" >
+    <meta http-equiv="X-UA-Compatible" content="IE=11,IE=10,IE=9,IE=8" >
+    <meta name="baidu-site-verification" content="dIcXMeY8Ya" />
+    
+    <title>Z3py的教程翻译 | foyjog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" >
+    <meta name="keywords" content="Jelon, 前端, Web, 张德龙, 前端开发" >
+    <meta name="description" content="Jelon个人前端小站" >
+
+    
+    <link rel="alternative" href="/atom.xml" title="foyjog" type="application/atom+xml" >
+    
+    
+    <link rel="shortcut icon" href="/favicon.ico" >
+    
+    <link rel="stylesheet" href="/css/style.css">
+    <!--[if lt IE 9]>
+    <script src="/js/html5.js"></script>
+    <![endif]-->
+    
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?fd459238242776d173cdc64918fb32f2";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+</head>
+
+<body class="home">
+    <!--[if lt IE 9]>
+    <div class="browsehappy">
+        当前网页 <strong>不支持</strong>
+        你正在使用的浏览器. 为了正常的访问, 请 <a href="http://browsehappy.com/">升级你的浏览器</a>.
+    </div>
+    <![endif]-->
+
+    <!-- 博客头部 -->
+    <header class="header">
+    <section class="container header-main">
+        <div class="logo">
+            <a href="/">
+                <div class="cover">
+                    <span class="name">foyjog</span>
+                    <span class="description">reversing engineer</span>
+                </div>
+            </a>
+        </div>
+        <div class="dropnav icon-paragraph-justify" id="JELON__btnDropNav"></div>
+        <ul class="menu hidden" id="JELON__menu">
+            
+            <li rel="/2018/05/03/Z3py的教程翻译/index.html" class="item ">
+                <a href="/" title="首页" class="icon-home">&nbsp;首页</a>
+            </li>
+            
+            <li rel="/2018/05/03/Z3py的教程翻译/index.html" class="item ">
+                <a href="/lab/" title="实验室" class="icon-lab">&nbsp;实验室</a>
+            </li>
+            
+            <li rel="/2018/05/03/Z3py的教程翻译/index.html" class="item ">
+                <a href="/about/" title="关于" class="icon-about">&nbsp;关于</a>
+            </li>
+            
+            <li rel="/2018/05/03/Z3py的教程翻译/index.html" class="item ">
+                <a href="/comment/" title="留言" class="icon-comment">&nbsp;留言</a>
+            </li>
+            
+        </ul>
+        <div class="profile clearfix">
+            <div class="feeds fl">
+                
+                
+                <p class="links">
+                    
+                        <a href="https://github.com/jangdelong" target="_blank">Github</a>
+                        |
+                    
+                        <a href="https://pages.coding.me" target="_blank">Hosted by Coding Pages</a>
+                        
+                    
+                </p>
+                <p class="sns">
+                    
+                        <a href="http://weibo.com/jangdelong" class="sinaweibo" target="_blank"><b>■</b> 新浪微博</a>
+                    
+                        <a href="https://www.facebook.com/profile.php?id=100011855760219&amp;ref=bookmarks" class="qqweibo" target="_blank"><b>■</b> Facebook</a>
+                    
+                    <a href="javascript: void(0);" class="wechat">
+                        <b>■</b>
+                        公众号
+                        <span class="popover">
+                            <img src="/img/wechat_mp.jpg" width="120" height="120" alt="我的微信订阅号">
+                            <i class="arrow"></i>
+                        </span>
+                    </a>
+                </p>
+                
+            </div>
+            <div class="avatar fr">
+                <img src="/img/jelon.jpg" alt="avatar" title="Jelon" >
+            </div>
+        </div>
+    </section>
+</header>
+
+
+    <!-- 博客正文 -->
+    <div class="container body clearfix">
+        <section class="content">
+            <div class="content-main widget">
+                <!-- 文章页 -->
+<!-- 文章 -->
+<article class="post article">
+    <header class="text-center">
+        <h3 class="post-title"><span>Z3py的教程翻译</span></h3>
+    </header>
+    <p class="post-meta text-center">
+        Jelon 发表于
+        <time datetime="2018-05-03T13:01:05.000Z">2018-05-03</time>
+    </p>
+    <div class="post-content">
+        <h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p>Z3Py感觉在逆向方面还是挺好用的，最近把教程看了一下，然后做一下翻译。</p>
 <h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p>这是Leonardo de Moura的Z3Py教程的归档版本。Sorig进行了语法的校对。</p>
 <h1 id="python中的Z3-API"><a href="#python中的Z3-API" class="headerlink" title="python中的Z3 API"></a>python中的Z3 API</h1><p>Z3是Microsoft Research开发的高性能定理证明器。Z3拥有者非常广泛的应用场景：软件/硬件验证和测试，约束求解，混合系统分析，安全性研究，生物学研究（计算机分析）以及几何问题。</p>
 <p>本教程演示了Z3Py的主要功能：Python中的Z3 API。阅读本教程不需要任何的Python知识。但是你学一下python对本教程的学习还是很有用的。</p>
@@ -36,4 +162,201 @@ python中的Z3 APIZ3是Microsoft Research开发的高性能定理证明器。Z3�
 <h1 id="机器运算"><a href="#机器运算" class="headerlink" title="机器运算"></a>机器运算</h1><p>现代CPU和主流编程语言使用固定大小的位向量进行算术运算。同样在Z3Py中可以使用Bit_Vectors进行机器运算。它们能够实现无符号和有符号二进制运算。<br>以下示例展示如何创建位向量变量和常量。<br>函数BitVec（’x’，16）在Z3中创建一个位向量变量，名称为x，16位。为了方便起见，可以使用整型常量在Z3Py中创建位向量表达式。函数BitVecVal（10,32）创建一个大小为32的位向量，其值为10。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">x = BitVec(<span class="string">'x'</span>, <span class="number">16</span>)</span><br><span class="line">y = BitVec(<span class="string">'y'</span>, <span class="number">16</span>)</span><br><span class="line"><span class="keyword">print</span> x + <span class="number">2</span></span><br><span class="line"><span class="comment"># Internal representation</span></span><br><span class="line"><span class="keyword">print</span> (x + <span class="number">2</span>).sexpr()</span><br><span class="line"></span><br><span class="line"><span class="comment"># -1 is equal to 65535 for 16-bit integers </span></span><br><span class="line"><span class="keyword">print</span> simplify(x + y - <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Creating bit-vector constants</span></span><br><span class="line">a = BitVecVal(<span class="number">-1</span>, <span class="number">16</span>)</span><br><span class="line">b = BitVecVal(<span class="number">65535</span>, <span class="number">16</span>)</span><br><span class="line"><span class="keyword">print</span> simplify(a == b)</span><br><span class="line"></span><br><span class="line">a = BitVecVal(<span class="number">-1</span>, <span class="number">32</span>)</span><br><span class="line">b = BitVecVal(<span class="number">65535</span>, <span class="number">32</span>)</span><br><span class="line"><span class="comment"># -1 is not equal to 65535 for 32-bit integers </span></span><br><span class="line"><span class="keyword">print</span> simplify(a == b)</span><br></pre></td></tr></table></figure></p>
 <p>与C，C ++，C＃，Java等编程语言相比，有符号位和无符号位向量作为数字的时候在Z3Py中没有区别。Z3为符号数运算提供了一个特殊的运算符操作版本，其中运算符&lt;，&lt;=，&gt;，&gt; =，/，％和&gt;&gt;对应于有符号运算。 相应的无符号运算符是ULT，ULE，UGT，UGE，UDiv，URem和LShR。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Create to bit-vectors of size 32</span></span><br><span class="line">x, y = BitVecs(<span class="string">'x y'</span>, <span class="number">32</span>)</span><br><span class="line"></span><br><span class="line">solve(x + y == <span class="number">2</span>, x &gt; <span class="number">0</span>, y &gt; <span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Bit-wise operators</span></span><br><span class="line"><span class="comment"># &amp; bit-wise and</span></span><br><span class="line"><span class="comment"># | bit-wise or</span></span><br><span class="line"><span class="comment"># ~ bit-wise not</span></span><br><span class="line">solve(x &amp; y == ~y)</span><br><span class="line"></span><br><span class="line">solve(x &lt; <span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># using unsigned version of &lt; </span></span><br><span class="line">solve(ULT(x, <span class="number">0</span>))</span><br></pre></td></tr></table></figure></p>
 <p>运算符&gt;&gt;是算术右移，&lt;&lt;是左移。 逻辑右移为LShR。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Create to bit-vectors of size 32</span></span><br><span class="line">x, y = BitVecs(<span class="string">'x y'</span>, <span class="number">32</span>)</span><br><span class="line"></span><br><span class="line">solve(x &gt;&gt; <span class="number">2</span> == <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">solve(x &lt;&lt; <span class="number">2</span> == <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">solve(x &lt;&lt; <span class="number">2</span> == <span class="number">24</span>)</span><br></pre></td></tr></table></figure></p>
-</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2018-05-03</span><i class="fa fa-tag"></i></div></div></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" href="http://twitter.com/home?status=,https://foyjog.github.io/2018/05/03/Z3py的教程翻译/,foyjog,Z3py的教程翻译,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2018/05/06/Z3Py在CTF逆向中的使用/" title="Z3Py在CTF逆向中的使用">Post Anterior</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2018/04/20/ddctf2018-部分writeup/" title="ddctf2018-部分writeup">Próximo post</a></li></ul></div></div></div></div></div><script src="/js/jquery.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></body></html>
+
+    </div>
+    <p class="post-meta">
+        <span class="post-cat">分类：
+            
+        </span>
+        <span class="post-tags">
+            标签：
+            
+        </span>
+    </p>
+</article>
+<!-- 分享按钮 -->
+
+  <div class="article-share clearfix text-center">
+    <div class="share-area">
+      <span class="share-txt">分享到：</span>
+      <a href="javascript: window.open('http://service.weibo.com/share/share.php?url=' + encodeURIComponent(location.href) + '&title=' + document.title + '&language=zh_cn');" class="share-icon weibo"></a>
+      <a href="javascript: alert('请复制链接到微信并发送');" class="share-icon wechat"></a>
+      <a href="javascript: window.open('http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=' + encodeURIComponent(location.href) + '&title=' + document.title);" class="share-icon qqzone"></a>
+      <a href="javascript: window.open('http://connect.qq.com/widget/shareqq/index.html?url=' + encodeURIComponent(location.href) + '&desc=Jelon个人博客&title=' + document.title + '&callback=' + encodeURIComponent(location.href));" class="share-icon qq"></a>
+      <a href="javascript: window.open('http://shuo.douban.com/!service/share?href=' + encodeURIComponent(location.href) + '&name=' + document.title + '&text=' + document.title);" class="share-icon douban"></a>
+    </div>
+  </div>
+
+
+<!-- 上一篇/下一篇 -->
+
+<div class="article-nav clearfix">
+    
+    <span class="prev fl">
+        上一篇<br >
+        <a href="/2018/05/06/Z3Py在CTF逆向中的使用/">
+            
+                Z3Py在CTF逆向中的使用
+            
+        </a>
+    </span>
+    
+
+    
+    <span class="next fr">
+        下一篇<br >
+        <a href="/2018/04/20/ddctf2018-部分writeup/">
+            
+                ddctf2018-部分writeup
+            
+        </a>
+    </span>
+    
+</div>
+
+<!-- 文章评论 -->
+
+  <script src="/js/comment.js"></script>
+  <div id="comments" class="comment">
+    <!--
+    <div class="sign-bar">
+      GitHub 已登录!
+      <span class="sign-link">登出</span>
+    </div>
+    <section class="box">
+      <div class="com-avatar"><img src="/img/jelon.jpg" alt="avatar"></div>
+      <div class="com-text">
+        <div class="main">
+          <textarea class="text-area-edited show" placeholder="欢迎评论！"></textarea>
+          <div class="text-area-preview"></div>
+        </div>
+        <div class="switch">
+          <div class="switch-item on">编辑</div>
+          <div class="switch-item">预览</div>
+        </div>
+        <div class="button">提交</div>
+      </div>
+    </section>
+    <section class="tips">注：评论支持 markdown 语法！</section>
+    <section class="list-wrap">
+      <ul class="list">
+        <li>
+          <div class="user-avatar">
+            <a href="/">
+              <img src="/img/jelon.jpg" alt="user-avatar">
+            </a>
+          </div>
+          <div class="user-comment">
+            <div class="user-comment-header">
+              <span class="post-name">张德龙</span>
+              <span class="post-time">2017年12月12日</span>
+              <span class="like liked">已赞</span>
+              <span class="like-num">2</span>
+            </div>
+            <div class="user-comment-body">333333</div>
+          </div>
+        </li>
+        <li>
+          <div class="user-avatar">
+            <a href="/">
+              <img src="/img/jelon.jpg" alt="user-avatar">
+            </a>
+          </div>
+          <div class="user-comment">
+            <div class="user-comment-header">
+              <span class="post-name">刘德华</span>
+              <span class="post-time">2017年12月12日</span>
+              <span class="like">点赞</span>
+              <span class="like-num">2</span>
+            </div>
+            <div class="user-comment-body">vvvvv</div>
+          </div>
+        </li>
+      </ul>
+      <div class="page-nav">
+        <a href="javascript: void(0);" class="item">1</a>
+        <a href="javascript: void(0);" class="item">2</a>
+        <a href="javascript: void(0);" class="item current">3</a>
+      </div>
+    </section>
+    -->
+  </div>
+  <script>
+  JELON.Comment({
+    container: 'comments',
+    label: 'Z3py的教程翻译' || '2018/05/03/Z3py的教程翻译/',
+    owner: 'jangdelong',
+    repo: 'blog_comments',
+    clientId: 'b08ed25e52c57993e69c',
+    clientSecret: '1cb9545488f0380904b87350e7c5a270ae03bab7'
+  });
+  </script>
+
+
+            </div>
+
+        </section>
+        <!-- 侧栏部分 -->
+<aside class="sidebar">
+    <section class="widget">
+        <h3 class="widget-hd"><strong>文章分类</strong></h3>
+        <!-- 文章分类 -->
+<ul class="widget-bd">
+    
+</ul>
+    </section>
+
+    
+    <section class="widget">
+        <h3 class="widget-hd"><strong>热门标签</strong></h3>
+        <!-- 文章标签 -->
+<div class="widget-bd tag-wrap">
+  
+</div>
+    </section>
+    
+
+    
+
+    
+    <!-- 友情链接 -->
+    <section class="widget">
+        <h3 class="widget-hd"><strong>友情链接</strong></h3>
+        <!-- 文章分类 -->
+<ul class="widget-bd">
+    
+        <li>
+            <a href="http://blog.sina.com.cn/u/1825875765" target="_blank" title="网络安全博客">Haoren博客</a>
+        </li>
+    
+        <li>
+            <a href="http://blog.csdn.net/yeweiouyang" target="_blank" title="技术博客">Maxwell博客</a>
+        </li>
+    
+        <li>
+            <a href="http://xuanzh.cc/" target="_blank" title="技术博客">朱旋个人博客</a>
+        </li>
+    
+</ul>
+    </section>
+    
+</aside>
+<!-- / 侧栏部分 -->
+    </div>
+
+    <!-- 博客底部 -->
+    <footer class="footer">
+    &copy;
+    
+        2016-2018
+    
+
+    <a href="/">Jelon Loves You</a>
+</footer>
+<div class="back-to-top" id="JELON__backToTop" title="返回顶部">返回顶部</div>
+
+    <!--博客js脚本 -->
+    <!-- 这里放网站js脚本 -->
+<script src="/js/main.js"></script>
+</body>
+</html>

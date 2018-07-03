@@ -2,9 +2,37 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://foyjog.github.io/2018/07/02/Linux-Kernel-Exploitation-on-Android-csaw2013/</loc>
+    
+    <lastmod>2018-07-03T02:56:46.149Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://foyjog.github.io/2018/06/29/Linux-Kernel-Exploitation-on-Android-csaw2011/</loc>
+    
+    <lastmod>2018-07-02T14:34:34.687Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://foyjog.github.io/2018/06/26/Linux-Kernel-Exploitation-on-Android%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA-mac-os/</loc>
+    
+    <lastmod>2018-07-02T10:22:42.469Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://foyjog.github.io/2018/06/27/Linux-Kernel-Exploitation-on-Android-Stack-Buffer-overflow/</loc>
+    
+    <lastmod>2018-07-02T08:08:15.515Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://foyjog.github.io/2018/06/21/Asis-CTF-2016-b00ks/</loc>
     
-    <lastmod>2018-06-21T15:48:07.821Z</lastmod>
+    <lastmod>2018-06-21T15:48:07.000Z</lastmod>
     
   </url>
   

@@ -1,5 +1,132 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="foyjog"><title>ddctf2018-部分writeup · foyjog</title><meta name="description" content="(╯°□°）╯︵ ┻━┻想了很久，对着发呆了一天，然后试了下偏移解码。。。然后就对了，每个十六进制减去128即可
-123result = [0xd4,0xe8,0xe1,0xf4,0xa0,0xf7,0xe1,0xf3,0xa0,0xe6,0xe1,0xf3,0xf4,0xa1,0xa0,0xd4,"><meta name="keywords"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><h3 title=""><a href="/">foyjog</a></h3><div class="description"><p>email:foyjog@163.com</p></div></div></div><ul class="social-links"></ul><div class="footer"><a target="_blank" href="/"><span>Theme by </span></a><a href="https://www.caicai.me"> CaiCai </a><span>&</span><a href="https://github.com/Ben02/hexo-theme-Anatole"> Ben</a><div class="by_farbox"><a href="https://hexo.io/zh-cn/" target="_blank">Proudly published with Hexo&#65281;</a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">主页</a></li><li><a href="/about">关于</a></li><li><a href="/archives">归档</a></li><li><a href="/links">链接</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"> </a></li></div><div class="avatar"><img></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>ddctf2018-部分writeup</a></h3></div><div class="post-content"><h1 id="╯°□°）╯︵-┻━┻"><a href="#╯°□°）╯︵-┻━┻" class="headerlink" title="(╯°□°）╯︵ ┻━┻"></a>(╯°□°）╯︵ ┻━┻</h1><p>想了很久，对着发呆了一天，然后试了下偏移解码。。。然后就对了，每个十六进制减去128即可</p>
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" >
+    <meta http-equiv="X-UA-Compatible" content="IE=11,IE=10,IE=9,IE=8" >
+    <meta name="baidu-site-verification" content="dIcXMeY8Ya" />
+    
+    <title>ddctf2018-部分writeup | foyjog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" >
+    <meta name="keywords" content="Jelon, 前端, Web, 张德龙, 前端开发" >
+    <meta name="description" content="Jelon个人前端小站" >
+
+    
+    <link rel="alternative" href="/atom.xml" title="foyjog" type="application/atom+xml" >
+    
+    
+    <link rel="shortcut icon" href="/favicon.ico" >
+    
+    <link rel="stylesheet" href="/css/style.css">
+    <!--[if lt IE 9]>
+    <script src="/js/html5.js"></script>
+    <![endif]-->
+    
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?fd459238242776d173cdc64918fb32f2";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+</head>
+
+<body class="home">
+    <!--[if lt IE 9]>
+    <div class="browsehappy">
+        当前网页 <strong>不支持</strong>
+        你正在使用的浏览器. 为了正常的访问, 请 <a href="http://browsehappy.com/">升级你的浏览器</a>.
+    </div>
+    <![endif]-->
+
+    <!-- 博客头部 -->
+    <header class="header">
+    <section class="container header-main">
+        <div class="logo">
+            <a href="/">
+                <div class="cover">
+                    <span class="name">foyjog</span>
+                    <span class="description">reversing engineer</span>
+                </div>
+            </a>
+        </div>
+        <div class="dropnav icon-paragraph-justify" id="JELON__btnDropNav"></div>
+        <ul class="menu hidden" id="JELON__menu">
+            
+            <li rel="/2018/04/20/ddctf2018-部分writeup/index.html" class="item ">
+                <a href="/" title="首页" class="icon-home">&nbsp;首页</a>
+            </li>
+            
+            <li rel="/2018/04/20/ddctf2018-部分writeup/index.html" class="item ">
+                <a href="/lab/" title="实验室" class="icon-lab">&nbsp;实验室</a>
+            </li>
+            
+            <li rel="/2018/04/20/ddctf2018-部分writeup/index.html" class="item ">
+                <a href="/about/" title="关于" class="icon-about">&nbsp;关于</a>
+            </li>
+            
+            <li rel="/2018/04/20/ddctf2018-部分writeup/index.html" class="item ">
+                <a href="/comment/" title="留言" class="icon-comment">&nbsp;留言</a>
+            </li>
+            
+        </ul>
+        <div class="profile clearfix">
+            <div class="feeds fl">
+                
+                
+                <p class="links">
+                    
+                        <a href="https://github.com/jangdelong" target="_blank">Github</a>
+                        |
+                    
+                        <a href="https://pages.coding.me" target="_blank">Hosted by Coding Pages</a>
+                        
+                    
+                </p>
+                <p class="sns">
+                    
+                        <a href="http://weibo.com/jangdelong" class="sinaweibo" target="_blank"><b>■</b> 新浪微博</a>
+                    
+                        <a href="https://www.facebook.com/profile.php?id=100011855760219&amp;ref=bookmarks" class="qqweibo" target="_blank"><b>■</b> Facebook</a>
+                    
+                    <a href="javascript: void(0);" class="wechat">
+                        <b>■</b>
+                        公众号
+                        <span class="popover">
+                            <img src="/img/wechat_mp.jpg" width="120" height="120" alt="我的微信订阅号">
+                            <i class="arrow"></i>
+                        </span>
+                    </a>
+                </p>
+                
+            </div>
+            <div class="avatar fr">
+                <img src="/img/jelon.jpg" alt="avatar" title="Jelon" >
+            </div>
+        </div>
+    </section>
+</header>
+
+
+    <!-- 博客正文 -->
+    <div class="container body clearfix">
+        <section class="content">
+            <div class="content-main widget">
+                <!-- 文章页 -->
+<!-- 文章 -->
+<article class="post article">
+    <header class="text-center">
+        <h3 class="post-title"><span>ddctf2018-部分writeup</span></h3>
+    </header>
+    <p class="post-meta text-center">
+        Jelon 发表于
+        <time datetime="2018-04-20T06:32:29.000Z">2018-04-20</time>
+    </p>
+    <div class="post-content">
+        <h1 id="╯°□°）╯︵-┻━┻"><a href="#╯°□°）╯︵-┻━┻" class="headerlink" title="(╯°□°）╯︵ ┻━┻"></a>(╯°□°）╯︵ ┻━┻</h1><p>想了很久，对着发呆了一天，然后试了下偏移解码。。。然后就对了，每个十六进制减去128即可</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">result = [<span class="number">0xd4</span>,<span class="number">0xe8</span>,<span class="number">0xe1</span>,<span class="number">0xf4</span>,<span class="number">0xa0</span>,<span class="number">0xf7</span>,<span class="number">0xe1</span>,<span class="number">0xf3</span>,<span class="number">0xa0</span>,<span class="number">0xe6</span>,<span class="number">0xe1</span>,<span class="number">0xf3</span>,<span class="number">0xf4</span>,<span class="number">0xa1</span>,<span class="number">0xa0</span>,<span class="number">0xd4</span>,<span class="number">0xe8</span>,<span class="number">0xe5</span>,<span class="number">0xa0</span>,<span class="number">0xe6</span>,<span class="number">0xec</span>,<span class="number">0xe1</span>,<span class="number">0xe7</span>,<span class="number">0xa0</span>,<span class="number">0xe9</span>,<span class="number">0xf3</span>,<span class="number">0xba</span>,<span class="number">0xa0</span>,<span class="number">0xc4</span>,<span class="number">0xc4</span>,<span class="number">0xc3</span>,<span class="number">0xd4</span>,<span class="number">0xc6</span>,<span class="number">0xfb</span>,<span class="number">0xb9</span>,<span class="number">0xb2</span>,<span class="number">0xb2</span>,<span class="number">0xe1</span>,<span class="number">0xe2</span>,<span class="number">0xb9</span>,<span class="number">0xb9</span>,<span class="number">0xb7</span>,<span class="number">0xb4</span>,<span class="number">0xe1</span>,<span class="number">0xb4</span>,<span class="number">0xb7</span>,<span class="number">0xe3</span>,<span class="number">0xe4</span>,<span class="number">0xb3</span>,<span class="number">0xb2</span>,<span class="number">0xb2</span>,<span class="number">0xe3</span>,<span class="number">0xe6</span>,<span class="number">0xb4</span>,<span class="number">0xb3</span>,<span class="number">0xe2</span>,<span class="number">0xb5</span>,<span class="number">0xb0</span>,<span class="number">0xb6</span>,<span class="number">0xb1</span>,<span class="number">0xb0</span>,<span class="number">0xe6</span>,<span class="number">0xe1</span>,<span class="number">0xe5</span>,<span class="number">0xe1</span>,<span class="number">0xb5</span>,<span class="number">0xfd</span>]</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> result:</span><br><span class="line">    <span class="keyword">print</span> chr(i<span class="number">-128</span>),</span><br></pre></td></tr></table></figure>
 <h1 id="第四扩展FS"><a href="#第四扩展FS" class="headerlink" title="第四扩展FS"></a>第四扩展FS</h1><p>题目有混淆，一开始以为文件中的The fourth extended filesystem是提示，当然也是正确的，可以通过把这个ext4文件dd出来，然后挂载，可以得到文件file.zip，但是一直以为是恢复文件啥的来获取密码，搞了好久看题目的意思才想到密码在备注中。。。（Pactera），解压得到file.txt文件，打开全是字母，根据题目提示日常违规审计中频次有时候非常重要，计算文件中每个字母的频次，然后排序，得到flag。</p>
 <h1 id="流量分析"><a href="#流量分析" class="headerlink" title="流量分析"></a>流量分析</h1><p>提示为</p>
@@ -48,4 +175,201 @@
 </blockquote>
 <p>回头一看，还有7分钟，- -</p>
 <p>唯一很遗憾的是不能去交流会，瞻仰各位大佬，哎，web一点不会，菜到不行</p>
-</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2018-04-20</span><i class="fa fa-tag"></i></div></div></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" href="http://twitter.com/home?status=,https://foyjog.github.io/2018/04/20/ddctf2018-部分writeup/,foyjog,ddctf2018-部分writeup,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2018/05/03/Z3py的教程翻译/" title="Z3py的教程翻译">Post Anterior</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2018/04/04/强网杯的hide思路解析/" title="强网杯的hide思路解析">Próximo post</a></li></ul></div></div></div></div></div><script src="/js/jquery.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></body></html>
+
+    </div>
+    <p class="post-meta">
+        <span class="post-cat">分类：
+            
+        </span>
+        <span class="post-tags">
+            标签：
+            
+        </span>
+    </p>
+</article>
+<!-- 分享按钮 -->
+
+  <div class="article-share clearfix text-center">
+    <div class="share-area">
+      <span class="share-txt">分享到：</span>
+      <a href="javascript: window.open('http://service.weibo.com/share/share.php?url=' + encodeURIComponent(location.href) + '&title=' + document.title + '&language=zh_cn');" class="share-icon weibo"></a>
+      <a href="javascript: alert('请复制链接到微信并发送');" class="share-icon wechat"></a>
+      <a href="javascript: window.open('http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=' + encodeURIComponent(location.href) + '&title=' + document.title);" class="share-icon qqzone"></a>
+      <a href="javascript: window.open('http://connect.qq.com/widget/shareqq/index.html?url=' + encodeURIComponent(location.href) + '&desc=Jelon个人博客&title=' + document.title + '&callback=' + encodeURIComponent(location.href));" class="share-icon qq"></a>
+      <a href="javascript: window.open('http://shuo.douban.com/!service/share?href=' + encodeURIComponent(location.href) + '&name=' + document.title + '&text=' + document.title);" class="share-icon douban"></a>
+    </div>
+  </div>
+
+
+<!-- 上一篇/下一篇 -->
+
+<div class="article-nav clearfix">
+    
+    <span class="prev fl">
+        上一篇<br >
+        <a href="/2018/05/03/Z3py的教程翻译/">
+            
+                Z3py的教程翻译
+            
+        </a>
+    </span>
+    
+
+    
+    <span class="next fr">
+        下一篇<br >
+        <a href="/2018/04/04/强网杯的hide思路解析/">
+            
+                强网杯的hide思路解析
+            
+        </a>
+    </span>
+    
+</div>
+
+<!-- 文章评论 -->
+
+  <script src="/js/comment.js"></script>
+  <div id="comments" class="comment">
+    <!--
+    <div class="sign-bar">
+      GitHub 已登录!
+      <span class="sign-link">登出</span>
+    </div>
+    <section class="box">
+      <div class="com-avatar"><img src="/img/jelon.jpg" alt="avatar"></div>
+      <div class="com-text">
+        <div class="main">
+          <textarea class="text-area-edited show" placeholder="欢迎评论！"></textarea>
+          <div class="text-area-preview"></div>
+        </div>
+        <div class="switch">
+          <div class="switch-item on">编辑</div>
+          <div class="switch-item">预览</div>
+        </div>
+        <div class="button">提交</div>
+      </div>
+    </section>
+    <section class="tips">注：评论支持 markdown 语法！</section>
+    <section class="list-wrap">
+      <ul class="list">
+        <li>
+          <div class="user-avatar">
+            <a href="/">
+              <img src="/img/jelon.jpg" alt="user-avatar">
+            </a>
+          </div>
+          <div class="user-comment">
+            <div class="user-comment-header">
+              <span class="post-name">张德龙</span>
+              <span class="post-time">2017年12月12日</span>
+              <span class="like liked">已赞</span>
+              <span class="like-num">2</span>
+            </div>
+            <div class="user-comment-body">333333</div>
+          </div>
+        </li>
+        <li>
+          <div class="user-avatar">
+            <a href="/">
+              <img src="/img/jelon.jpg" alt="user-avatar">
+            </a>
+          </div>
+          <div class="user-comment">
+            <div class="user-comment-header">
+              <span class="post-name">刘德华</span>
+              <span class="post-time">2017年12月12日</span>
+              <span class="like">点赞</span>
+              <span class="like-num">2</span>
+            </div>
+            <div class="user-comment-body">vvvvv</div>
+          </div>
+        </li>
+      </ul>
+      <div class="page-nav">
+        <a href="javascript: void(0);" class="item">1</a>
+        <a href="javascript: void(0);" class="item">2</a>
+        <a href="javascript: void(0);" class="item current">3</a>
+      </div>
+    </section>
+    -->
+  </div>
+  <script>
+  JELON.Comment({
+    container: 'comments',
+    label: 'ddctf2018-部分writeup' || '2018/04/20/ddctf2018-部分writeup/',
+    owner: 'jangdelong',
+    repo: 'blog_comments',
+    clientId: 'b08ed25e52c57993e69c',
+    clientSecret: '1cb9545488f0380904b87350e7c5a270ae03bab7'
+  });
+  </script>
+
+
+            </div>
+
+        </section>
+        <!-- 侧栏部分 -->
+<aside class="sidebar">
+    <section class="widget">
+        <h3 class="widget-hd"><strong>文章分类</strong></h3>
+        <!-- 文章分类 -->
+<ul class="widget-bd">
+    
+</ul>
+    </section>
+
+    
+    <section class="widget">
+        <h3 class="widget-hd"><strong>热门标签</strong></h3>
+        <!-- 文章标签 -->
+<div class="widget-bd tag-wrap">
+  
+</div>
+    </section>
+    
+
+    
+
+    
+    <!-- 友情链接 -->
+    <section class="widget">
+        <h3 class="widget-hd"><strong>友情链接</strong></h3>
+        <!-- 文章分类 -->
+<ul class="widget-bd">
+    
+        <li>
+            <a href="http://blog.sina.com.cn/u/1825875765" target="_blank" title="网络安全博客">Haoren博客</a>
+        </li>
+    
+        <li>
+            <a href="http://blog.csdn.net/yeweiouyang" target="_blank" title="技术博客">Maxwell博客</a>
+        </li>
+    
+        <li>
+            <a href="http://xuanzh.cc/" target="_blank" title="技术博客">朱旋个人博客</a>
+        </li>
+    
+</ul>
+    </section>
+    
+</aside>
+<!-- / 侧栏部分 -->
+    </div>
+
+    <!-- 博客底部 -->
+    <footer class="footer">
+    &copy;
+    
+        2016-2018
+    
+
+    <a href="/">Jelon Loves You</a>
+</footer>
+<div class="back-to-top" id="JELON__backToTop" title="返回顶部">返回顶部</div>
+
+    <!--博客js脚本 -->
+    <!-- 这里放网站js脚本 -->
+<script src="/js/main.js"></script>
+</body>
+</html>
