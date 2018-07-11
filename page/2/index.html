@@ -227,7 +227,7 @@
           
           <li class="menu-item menu-item-home">
     <a href="/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Startseite</a>
   </li>
         
         
@@ -235,7 +235,7 @@
           
           <li class="menu-item menu-item-archives">
     <a href="/archives/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archiv</a>
   </li>
 
       
@@ -325,14 +325,14 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
 
               
                 
               
 
-              <time title="Created: 2018-04-20 14:32:29" itemprop="dateCreated datePublished" datetime="2018-04-20T14:32:29+08:00">2018-04-20</time>
+              <time title="Post created: 2018-04-20 14:32:29" itemprop="dateCreated datePublished" datetime="2018-04-20T14:32:29+08:00">2018-04-20</time>
             
 
             
@@ -349,7 +349,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2018-07-03 16:17:47" itemprop="dateModified" datetime="2018-07-03T16:17:47+08:00">2018-07-03</time>
+                <time title="Updated at: 2018-07-03 16:17:47" itemprop="dateModified" datetime="2018-07-03T16:17:47+08:00">2018-07-03</time>
               
             
           </span>
@@ -385,12 +385,12 @@
         
           
           (╯°□°）╯︵ ┻━┻想了很久，对着发呆了一天，然后试了下偏移解码。。。然后就对了，每个十六进制减去128即可
-123result = [0xd4,0xe8,0xe1,0xf4,0xa0,0xf7,0xe1,0xf3,0xa0,0xe6,0xe1,0xf3,0xf4,0xa1,0xa0,0xd4,
+123result = [0xd4,0xe8,0xe1,0xf4,0xa0,0xf7,0xe1,0xf3,0xa0,0xe6,0xe1,0xf3,0xf4,0xa1,0xa0,0xd4,0xe8,0xe5,0xa0,0xe6,0xec,0xe1,0xe7,0xa0,0xe9,0xf3,0xba,0xa0,0xc4,0xc4,0xc3,0xd4,0xc6,0xfb,0xb9,0xb2,0xb2,0xe1,0xe2,0xb9,0xb9,0xb7,0xb4,0xe1,0xb4,0xb7,0xe3,0xe4,0xb3,0xb2,0xb2,0xe3,0xe6,0xb4,0xb3,0xe2,0xb5,0xb0,0xb6,0xb1,0xb0,0xe6,0xe1,0xe5,0xe1,0xb5,
           ...
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/04/20/ddctf2018-部分writeup/#more" rel="contents">
-              Read more &raquo;
+              Weiterlesen &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -484,14 +484,14 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
 
               
                 
               
 
-              <time title="Created: 2018-04-04 17:19:42" itemprop="dateCreated datePublished" datetime="2018-04-04T17:19:42+08:00">2018-04-04</time>
+              <time title="Post created: 2018-04-04 17:19:42" itemprop="dateCreated datePublished" datetime="2018-04-04T17:19:42+08:00">2018-04-04</time>
             
 
             
@@ -508,7 +508,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2018-07-03 16:19:37" itemprop="dateModified" datetime="2018-07-03T16:19:37+08:00">2018-07-03</time>
+                <time title="Updated at: 2018-07-03 16:19:37" itemprop="dateModified" datetime="2018-07-03T16:19:37+08:00">2018-07-03</time>
               
             
           </span>
@@ -544,12 +544,12 @@
         
           
           概述这个题目其实，，，我最后没有得出确切的结论，因为比赛已经结束了，没有机会验证。这个题一看，很容易得出是个linux下的upx程序，脱壳对于我来说是不可能了，除了利用upx -d这种试了一下发现没啥鸟用，就没有再关心这个壳，其实压缩壳加密壳直接带壳跑也没啥。
-思路流程题目好像不是很难的感觉，只是分
+思路流程题目好像不是很难的感觉，只是分析的时候多点儿时间就可以了，放如ida，然后运行，发现程序瞬间退出了，确定程序做了反调试的机制，利用strace做跟踪，如下：123456access("/etc/ld.so.nohwcap", F_OK)      = -1 ENOENT (No such file or directory)ptrace(PTRACE_TRACEME, 0, NULL, NULL)   = -1 EPERM (Operation not permitted)ptrace(PTRACE_TRACEME, 0, 
           ...
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/04/04/强网杯的hide思路解析/#more" rel="contents">
-              Read more &raquo;
+              Weiterlesen &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -643,14 +643,14 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
 
               
                 
               
 
-              <time title="Created: 2018-04-03 16:45:31" itemprop="dateCreated datePublished" datetime="2018-04-03T16:45:31+08:00">2018-04-03</time>
+              <time title="Post created: 2018-04-03 16:45:31" itemprop="dateCreated datePublished" datetime="2018-04-03T16:45:31+08:00">2018-04-03</time>
             
 
             
@@ -667,7 +667,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2018-07-03 16:17:30" itemprop="dateModified" datetime="2018-07-03T16:17:30+08:00">2018-07-03</time>
+                <time title="Updated at: 2018-07-03 16:17:30" itemprop="dateModified" datetime="2018-07-03T16:17:30+08:00">2018-07-03</time>
               
             
           </span>
@@ -703,12 +703,13 @@
         
           
           概述题目给的是一个log文件，打开查看，发现是go语言编写的，所以才叫g0g0g0…
-思路流程要看懂log文件不是很难，需要认真一点查看，可以发现这写log文件其实是执行的流程12345Entering main.init..0:	 t0 = *init$guard	 if t0 goto 2 el
+思路流程要看懂log文件不是很难，需要认真一点查看，可以发现这写log文件其实是执行的流程12345Entering main.init..0:	 t0 = *init$guard	 if t0 goto 2 else 1.1:
+看的出现首先进入main.init,往后查找，发现在15585行leaving main.init所以说很多代码是冗余的，根本不需要看，把init这种，println，scanf这种代码全部删掉，只留下功能性的func函数进行分析即可。精简代码如下：123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263
           ...
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/04/03/0ctf的g0g0g0解析/#more" rel="contents">
-              Read more &raquo;
+              Weiterlesen &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -802,14 +803,14 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
 
               
                 
               
 
-              <time title="Created: 2018-03-08 21:43:34" itemprop="dateCreated datePublished" datetime="2018-03-08T21:43:34+08:00">2018-03-08</time>
+              <time title="Post created: 2018-03-08 21:43:34" itemprop="dateCreated datePublished" datetime="2018-03-08T21:43:34+08:00">2018-03-08</time>
             
 
             
@@ -826,7 +827,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2018-07-03 16:19:16" itemprop="dateModified" datetime="2018-07-03T16:19:16+08:00">2018-07-03</time>
+                <time title="Updated at: 2018-07-03 16:19:16" itemprop="dateModified" datetime="2018-07-03T16:19:16+08:00">2018-07-03</time>
               
             
           </span>
@@ -862,12 +863,14 @@
         
           
           概述逆向还是很好玩的，这个reversing.kr的韩国网站，题目还是很有质量的，过年接近一个月，每天做几道题目还是比较舒服的，做着做着也就还剩几道题目没做了，这里先把做过的慢慢记录下来，以后还可以经常返回来看一下，不至于做过就忘了。
-SimpleVM装载自freebuf概述Reversing.kr
+SimpleVM装载自freebuf概述Reversing.kr是一个韩国的逆向题练习网站，题目的质量还是比较好的，比较费时间去破解，这里给出我在刷到SimpleVM这道题目的时候的一些心得和体会。
+SimpleVM
+0拿到文件之后拖入ida分析，发现报错，illegal program entry point(C023DC)。我们继续打开文件，发现程序在00C023C7的时候就中断了，所以会报这个不合法的入口点，我们通过readelf命令可以清楚的查看到program header的信息(FileSize 为13C7)：1234Program Header
           ...
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/03/08/reversing-kr-writeup/#more" rel="contents">
-              Read more &raquo;
+              Weiterlesen &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -961,14 +964,14 @@ SimpleVM装载自freebuf概述Reversing.kr
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
 
               
                 
               
 
-              <time title="Created: 2018-03-08 11:59:49" itemprop="dateCreated datePublished" datetime="2018-03-08T11:59:49+08:00">2018-03-08</time>
+              <time title="Post created: 2018-03-08 11:59:49" itemprop="dateCreated datePublished" datetime="2018-03-08T11:59:49+08:00">2018-03-08</time>
             
 
             
@@ -985,7 +988,7 @@ SimpleVM装载自freebuf概述Reversing.kr
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2018-07-03 16:18:38" itemprop="dateModified" datetime="2018-07-03T16:18:38+08:00">2018-07-03</time>
+                <time title="Updated at: 2018-07-03 16:18:38" itemprop="dateModified" datetime="2018-07-03T16:18:38+08:00">2018-07-03</time>
               
             
           </span>
@@ -1021,12 +1024,12 @@ SimpleVM装载自freebuf概述Reversing.kr
         
           
           概述新手学习就是要多见识，多做题是长见识的好方法，本文将持续更新pwnable.tw的writeup，记录学习二进制的路程。
-Start基础题目，拿过来进行分析，拖入ida，发现代码不多12345678910111213141516171819202122                      
+Start基础题目，拿过来进行分析，拖入ida，发现代码不多12345678910111213141516171819202122                               push    esp.text:08048061                 push    offset _exit.text:08048066                 xor     eax, eax.text:08048068                 xor     ebx, ebx.text:0804806A                 xor     ecx, ecx.text:0804806C                 xor    
           ...
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/03/08/pwnable-tw-writeup/#more" rel="contents">
-              Read more &raquo;
+              Weiterlesen &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -1120,14 +1123,14 @@ Start基础题目，拿过来进行分析，拖入ida，发现代码不多123456
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
 
               
                 
               
 
-              <time title="Created: 2018-01-23 00:19:08" itemprop="dateCreated datePublished" datetime="2018-01-23T00:19:08+08:00">2018-01-23</time>
+              <time title="Post created: 2018-01-23 00:19:08" itemprop="dateCreated datePublished" datetime="2018-01-23T00:19:08+08:00">2018-01-23</time>
             
 
             
@@ -1144,7 +1147,7 @@ Start基础题目，拿过来进行分析，拖入ida，发现代码不多123456
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2018-07-03 16:17:37" itemprop="dateModified" datetime="2018-07-03T16:17:37+08:00">2018-07-03</time>
+                <time title="Updated at: 2018-07-03 16:17:37" itemprop="dateModified" datetime="2018-07-03T16:17:37+08:00">2018-07-03</time>
               
             
           </span>
@@ -1181,12 +1184,19 @@ Start基础题目，拿过来进行分析，拖入ida，发现代码不多123456
           
           概述这道题目非常的有意思，但也花了我很多时间来求解，题目是利用了vim中的操作来模拟程序的运行，在vim中输入正确的flag，然后再输入GY@”进行flag的验证。这道题目出的非常的有技巧。
 思路流程
-GY@” 这四个命令的意思为：转到最后一行，复制整行，利用执行寄存器命令@”来执行刚才复制的最后一
+GY@” 这四个命令的意思为：转到最后一行，复制整行，利用执行寄存器命令@”来执行刚才复制的最后一行程序。
+最后一行的字符串为
+16Gf2"ayl^f0"cyl"Ayl^fh"Ayl^fj"Ayl^fG"gyl^fk"GylG$FY"Gy3l$F@"hylFh"Hyl260GY@"F10H
+
+所以我们得分析这些字符所表达的意思，只要分析清楚了，题目就会有思路。
+
+以下是对最后四行命令行的解释：
+1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545
           ...
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/01/23/34c3ctf中vim题目详解/#more" rel="contents">
-              Read more &raquo;
+              Weiterlesen &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -1280,14 +1290,14 @@ GY@” 这四个命令的意思为：转到最后一行，复制整行，利用�
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
 
               
                 
               
 
-              <time title="Created: 2018-01-18 23:36:44" itemprop="dateCreated datePublished" datetime="2018-01-18T23:36:44+08:00">2018-01-18</time>
+              <time title="Post created: 2018-01-18 23:36:44" itemprop="dateCreated datePublished" datetime="2018-01-18T23:36:44+08:00">2018-01-18</time>
             
 
             
@@ -1304,7 +1314,7 @@ GY@” 这四个命令的意思为：转到最后一行，复制整行，利用�
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2018-07-03 16:17:44" itemprop="dateModified" datetime="2018-07-03T16:17:44+08:00">2018-07-03</time>
+                <time title="Updated at: 2018-07-03 16:17:44" itemprop="dateModified" datetime="2018-07-03T16:17:44+08:00">2018-07-03</time>
               
             
           </span>
@@ -1339,12 +1349,15 @@ GY@” 这四个命令的意思为：转到最后一行，复制整行，利用�
       
         
           
-          概述这个是我在吾爱破解看到的一个漏洞，感觉不显得那么复杂，就顺手拿过来研究一下seh的利用。这里写一写我的研究流程，文件在后续连接给出。当然要不了解seh的话还是看一看seh详细介绍即可，文章写得非常好。这个软件功能是一个吧wav文件转换成一个MP3文件，漏洞产生的主要原因是没有对输入的文件做任何的
+          概述这个是我在吾爱破解看到的一个漏洞，感觉不显得那么复杂，就顺手拿过来研究一下seh的利用。这里写一写我的研究流程，文件在后续连接给出。当然要不了解seh的话还是看一看seh详细介绍即可，文章写得非常好。这个软件功能是一个吧wav文件转换成一个MP3文件，漏洞产生的主要原因是没有对输入的文件做任何的检查，拿过来就直接当wav文件解析了，从而导致的栈溢出。
+研究流程
+因为是解析文件，所以直接找到createfile函数和readfile函数进行断点，运行程序，程序中断。
+在readfile函数中向上回溯代码，找到程序对输入文件做处理的关键代码0x4ba820处代码如下：12345678910111213141516171819202122232425while ( 2 ) &#123;   result = v2;   switch ( v2 )   &#123;     case 0:  
           ...
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/01/18/Boxoft-Wav-to-MP3-freeware-中的SEH漏洞利用/#more" rel="contents">
-              Read more &raquo;
+              Weiterlesen &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -1438,14 +1451,14 @@ GY@” 这四个命令的意思为：转到最后一行，复制整行，利用�
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
 
               
                 
               
 
-              <time title="Created: 2017-12-25 17:34:13" itemprop="dateCreated datePublished" datetime="2017-12-25T17:34:13+08:00">2017-12-25</time>
+              <time title="Post created: 2017-12-25 17:34:13" itemprop="dateCreated datePublished" datetime="2017-12-25T17:34:13+08:00">2017-12-25</time>
             
 
             
@@ -1462,7 +1475,7 @@ GY@” 这四个命令的意思为：转到最后一行，复制整行，利用�
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2018-07-03 16:17:34" itemprop="dateModified" datetime="2018-07-03T16:17:34+08:00">2018-07-03</time>
+                <time title="Updated at: 2018-07-03 16:17:34" itemprop="dateModified" datetime="2018-07-03T16:17:34+08:00">2018-07-03</time>
               
             
           </span>
@@ -1498,12 +1511,12 @@ GY@” 这四个命令的意思为：转到最后一行，复制整行，利用�
         
           
           12月11号00ctf 2017,主要是逆向和pwn题目，题目在最后的链接中。
-第一题（guessme）这一题只有50分，所以应该算是送分题目，直接拖进ida，查看main中关键的代码如下：123456789101112131415161718192021else&#123;  for ( i = 
+第一题（guessme）这一题只有50分，所以应该算是送分题目，直接拖进ida，查看main中关键的代码如下：123456789101112131415161718192021else&#123;  for ( i = 0;        i &lt; (unsigned __int64)std::__cxx11::basic_string&lt;char,std::char_traits&lt;char&gt;,std::allocator&lt;char&gt;&gt;::length(&amp;v14);        ++i )  &#123;    v6 = *(char *)std::__cxx11::basic_string&lt;char,std::char_traits&lt;char&gt;
           ...
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/12/25/00ctf-reverse-writeup/#more" rel="contents">
-              Read more &raquo;
+              Weiterlesen &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -1591,7 +1604,7 @@ GY@” 这四个命令的意思为：转到最后一行，复制整行，利用�
                   <a href="/archives/">
                 
                     <span class="site-state-item-count">18</span>
-                    <span class="site-state-item-name">posts</span>
+                    <span class="site-state-item-name">Artikel</span>
                   </a>
                 </div>
               
@@ -1669,7 +1682,7 @@ GY@” 这四个命令的意思为：转到最后一行，复制整行，利用�
 
 
 
-  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.4.4</div>
+  <div class="powered-by">Erstellt mit  <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.4.4</div>
 
 
 
