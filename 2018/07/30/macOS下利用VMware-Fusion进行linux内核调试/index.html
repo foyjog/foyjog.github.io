@@ -118,12 +118,14 @@
 <meta property="og:image" content="https://foyjog.github.io/img/kdb.png">
 <meta property="og:image" content="https://foyjog.github.io/img/gef.png">
 <meta property="og:image" content="https://foyjog.github.io/img/crash.png">
-<meta property="og:updated_time" content="2018-07-30T07:18:05.534Z">
+<meta property="og:updated_time" content="2018-07-30T07:36:44.827Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="macOS下利用VMware Fusion进行linux内核调试">
 <meta name="twitter:description" content="前言最近两周一直在做内核的fuzz,也没有好好调一下漏洞,有机会偷偷懒还是得调一调,不然手生 啊. mac下的调试方式刚开始利用了改写vmx下的debugStub.listen.guest64 = “1”设置来进行调试设置,但是gdb一直不能够read到一些内存,而且还不能中断,就很难受,所以改为双机调试.首先参考http://eternalsakura13.com/2018/04/15/kern">
 <meta name="twitter:image" content="https://foyjog.github.io/img/kdb.png">
 
+
+  
 
 
   <link rel="alternate" href="/atom.xml" title="foyjog" type="application/atom+xml" />
@@ -231,7 +233,7 @@
           
           <li class="menu-item menu-item-home">
     <a href="/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Startseite</a>
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
   </li>
         
         
@@ -239,7 +241,7 @@
           
           <li class="menu-item menu-item-archives">
     <a href="/archives/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archiv</a>
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
   </li>
 
       
@@ -325,14 +327,14 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
 
               
                 
               
 
-              <time title="Post created: 2018-07-30 14:45:18 / Updated at: 15:18:05" itemprop="dateCreated datePublished" datetime="2018-07-30T14:45:18+08:00">2018-07-30</time>
+              <time title="Created: 2018-07-30 14:45:18 / Modified: 15:36:44" itemprop="dateCreated datePublished" datetime="2018-07-30T14:45:18+08:00">2018-07-30</time>
             
 
             
@@ -371,7 +373,7 @@
 
       
         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近两周一直在做内核的fuzz,也没有好好调一下漏洞,有机会偷偷懒还是得调一调,不然手生 啊.</p>
-<h3 id="mac下的调试方式"><a href="#mac下的调试方式" class="headerlink" title="mac下的调试方式"></a>mac下的调试方式</h3><p>刚开始利用了改写vmx下的debugStub.listen.guest64 = “1”设置来进行调试设置,但是gdb一直不能够read到一些内存,而且还不能中断,就很难受,所以改为双机调试.<br>首先参考<a href="http://eternalsakura13.com/2018/04/15/kernel_debug/" target="_blank" rel="noopener">http://eternalsakura13.com/2018/04/15/kernel_debug/</a><br>进行内核的安装和符号文件的拉取,kernel对应的源代码,但是到双机调试的时候就出现问题了,vmwara fusion中没有添加pipe管道这么一个选项.<br>但是其实vmwarefusion是完全支持这么个调试方式的,参考如下如下的文章进行设置:<a href="https://github.com/coolbrain/enviroment-monitoring-system即可成功的进行调试" target="_blank" rel="noopener">https://github.com/coolbrain/enviroment-monitoring-system即可成功的进行调试</a>.<br><img src="/img/kdb.png" alt="kdb被调试端"><br><img src="/img/gef.png" alt="gdb调试端"></p>
+<h3 id="mac下的调试方式"><a href="#mac下的调试方式" class="headerlink" title="mac下的调试方式"></a>mac下的调试方式</h3><p>刚开始利用了改写vmx下的debugStub.listen.guest64 = “1”设置来进行调试设置,但是gdb一直不能够read到一些内存,而且还不能中断,就很难受,所以改为双机调试.<br>首先参考<a href="http://eternalsakura13.com/2018/04/15/kernel_debug/" target="_blank" rel="noopener">http://eternalsakura13.com/2018/04/15/kernel_debug/</a><br>进行内核的安装和符号文件的拉取,kernel对应的源代码,但是到双机调试的时候就出现问题了,vmwara fusion中没有添加pipe管道这么一个选项.<br>但是其实vmwarefusion是完全支持这么个调试方式的,参考如下如下的文章进行设置:<a href="https://github.com/coolbrain/enviroment-monitoring-system" target="_blank" rel="noopener">https://github.com/coolbrain/enviroment-monitoring-system</a><br>即可成功的进行调试.<br><img src="/img/kdb.png" alt="kdb被调试端"><br><img src="/img/gef.png" alt="gdb调试端"></p>
 <p>利用CVE-2017-8890的poc运行一下.<br><img src="/img/crash.png" alt="crash"><br>可以发现能够正确的跟踪到segment fault.</p>
 <p>如果没有设置好的话多参考参考下面的一些文章即可.</p>
 <h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://insinuator.net/2014/01/serial-port-debugging-between-two-virtual-machines-in-vmware-fusion/" target="_blank" rel="noopener">https://insinuator.net/2014/01/serial-port-debugging-between-two-virtual-machines-in-vmware-fusion/</a><br><a href="https://github.com/coolbrain/enviroment-monitoring-system" target="_blank" rel="noopener">https://github.com/coolbrain/enviroment-monitoring-system</a><br><a href="http://eternalsakura13.com/2018/04/15/kernel_debug/" target="_blank" rel="noopener">http://eternalsakura13.com/2018/04/15/kernel_debug/</a><br><a href="http://bestwing.me/2018/03/23/Linux_Kernel_Debugging_with_VMware_and_GDB/" target="_blank" rel="noopener">http://bestwing.me/2018/03/23/Linux_Kernel_Debugging_with_VMware_and_GDB/</a><br><a href="http://advdbg.org/" target="_blank" rel="noopener">http://advdbg.org/</a></p>
@@ -461,10 +463,10 @@
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Inhaltsverzeichnis
+            Table of Contents
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Übersicht
+            Overview
           </li>
         </ul>
       
@@ -485,7 +487,7 @@
                   <a href="/archives/">
                 
                     <span class="site-state-item-count">20</span>
-                    <span class="site-state-item-name">Artikel</span>
+                    <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
               
@@ -579,7 +581,7 @@
 
 
 
-  <div class="powered-by">Erstellt mit  <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.4.4</div>
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.4.4</div>
 
 
 
