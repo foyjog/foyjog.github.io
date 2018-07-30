@@ -286,6 +286,154 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://foyjog.github.io/2018/07/30/macOS下利用VMware-Fusion进行linux内核调试/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="foyjog">
+      <meta itemprop="description" content="email:foyjog@163.com">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="foyjog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/30/macOS下利用VMware-Fusion进行linux内核调试/" itemprop="url">
+                  macOS下利用VMware Fusion进行linux内核调试
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2018-07-30 14:45:18 / Updated at: 15:18:05" itemprop="dateCreated datePublished" datetime="2018-07-30T14:45:18+08:00">2018-07-30</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          前言最近两周一直在做内核的fuzz,也没有好好调一下漏洞,有机会偷偷懒还是得调一调,不然手生 啊.
+mac下的调试方式刚开始利用了改写vmx下的debugStub.listen.guest64 = “1”设置来进行调试设置,但是gdb一直不能够read到一些内存,而且还不能中断,就很难受,所以改为双机调试.首先参考http://eternalsakura13.com/2018/04/15/kernel_debug/进行内核的安装和符号文件的拉取,kernel对应的源代码,但是到双机调试的时候就出现问题了,vmwara fusion中没有添加pipe管道这么一个选项.但是其实vmwarefusion是完全支持这么个调试方式的,参考如下如下的文章进行设置:https://github.com/coolbrain/enviroment-monitoring-system即可成功的进行调试.
+利用
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/07/30/macOS下利用VMware-Fusion进行linux内核调试/#more" rel="contents">
+              Weiterlesen &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://foyjog.github.io/2018/07/16/安恒杯第八次周周练writeup/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1685,165 +1833,6 @@ CSAW_ALLOC_HANDLE123456789101112131415161718case CSAW_ALLOC_HANDLE:        &#123
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://foyjog.github.io/2018/05/06/Z3Py在CTF逆向中的使用/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="foyjog">
-      <meta itemprop="description" content="email:foyjog@163.com">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="foyjog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/05/06/Z3Py在CTF逆向中的使用/" itemprop="url">
-                  Z3Py在CTF逆向中的使用
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Veröffentlicht am</span>
-              
-
-              
-                
-              
-
-              <time title="Post created: 2018-05-06 17:22:14" itemprop="dateCreated datePublished" datetime="2018-05-06T17:22:14+08:00">2018-05-06</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Updated at: 2018-07-03 16:19:41" itemprop="dateModified" datetime="2018-07-03T16:19:41+08:00">2018-07-03</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          前言Z3是Microsoft Research开发的高性能定理证明器。Z3拥有者非常广泛的应用场景：软件/硬件验证和测试，约束求解，混合系统分析，安全性研究，生物学研究（计算机分析）以及几何问题。Z3Py是使用Python脚本来解决一些实际问题，Z3Py在windows下的安装可以参考如下链接：https://github.com/Z3Prover/z3/wiki/Using-Z3Py-on-Windows。Z3Py的使用教学可以参考如下链接：https://ericpony.github.io/z3py-tutorial/guide-examples.htm
-CTF逆向中的应用现在的CTF逆向中，求解方程式或者求解约束条件是非常常见的一种考察方式，而ctf比赛都是限时的，当我们已经逆向出来flag的约束条件时，可能还需要花一定的时间去求解逆过程。而Z3求解器就给我们提供了一个非常便利求解
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/05/06/Z3Py在CTF逆向中的使用/#more" rel="contents">
-              Weiterlesen &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1891,7 +1880,7 @@ CTF逆向中的应用现在的CTF逆向中，求解方程式或者求解约束�
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">19</span>
+                    <span class="site-state-item-count">20</span>
                     <span class="site-state-item-name">Artikel</span>
                   </a>
                 </div>
