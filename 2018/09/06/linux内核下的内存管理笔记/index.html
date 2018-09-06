@@ -7,7 +7,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>linux内核下的内存管理浅析 | foyjog</title>
+  <title>linux内核下的内存管理笔记 | foyjog</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -17,7 +17,7 @@
 
   <meta name="description" content="关于内核内存因为在做内核方面的技术,所以想要对内核内存管理做一些分析,之前看雪的老哥给我发了一些他对physmap见解,果然大佬就是大佬,做什么都能看到很深的点.关于physmap在32位下其实就是ZONE_NORMAL区域,在内核分配内存的时候,一般都是从ZONE_NORMAL区域开始分配.而mmap一开始会在ZONE_HIGHMEM进行分配,一旦ZONE_HIGHMEM区域不够,就会从ZONE">
 <meta property="og:type" content="article">
-<meta property="og:title" content="linux内核下的内存管理浅析">
+<meta property="og:title" content="linux内核下的内存管理笔记">
 <meta property="og:url" content="https://foyjog.github.io/2018/09/06/linux内核下的内存管理笔记/index.html">
 <meta property="og:site_name" content="foyjog">
 <meta property="og:description" content="关于内核内存因为在做内核方面的技术,所以想要对内核内存管理做一些分析,之前看雪的老哥给我发了一些他对physmap见解,果然大佬就是大佬,做什么都能看到很深的点.关于physmap在32位下其实就是ZONE_NORMAL区域,在内核分配内存的时候,一般都是从ZONE_NORMAL区域开始分配.而mmap一开始会在ZONE_HIGHMEM进行分配,一旦ZONE_HIGHMEM区域不够,就会从ZONE">
@@ -26,9 +26,9 @@
 <meta property="og:image" content="https://foyjog.github.io/img/mem2.jpg">
 <meta property="og:image" content="https://foyjog.github.io/img/slab.png">
 <meta property="og:image" content="https://foyjog.github.io/img/slab2.jpg">
-<meta property="og:updated_time" content="2018-09-06T10:26:07.061Z">
+<meta property="og:updated_time" content="2018-09-06T10:26:51.951Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="linux内核下的内存管理浅析">
+<meta name="twitter:title" content="linux内核下的内存管理笔记">
 <meta name="twitter:description" content="关于内核内存因为在做内核方面的技术,所以想要对内核内存管理做一些分析,之前看雪的老哥给我发了一些他对physmap见解,果然大佬就是大佬,做什么都能看到很深的点.关于physmap在32位下其实就是ZONE_NORMAL区域,在内核分配内存的时候,一般都是从ZONE_NORMAL区域开始分配.而mmap一开始会在ZONE_HIGHMEM进行分配,一旦ZONE_HIGHMEM区域不够,就会从ZONE">
 <meta name="twitter:image" content="https://foyjog.github.io/img/mem1.jpg">
 
@@ -197,7 +197,7 @@
 <div class="content content-post CENTER">
    <article id="post-linux内核下的内存管理笔记" class="article article-type-post" itemprop="blogPost">
   <header class="article-header">
-    <h1 class="post-title">linux内核下的内存管理浅析</h1>
+    <h1 class="post-title">linux内核下的内存管理笔记</h1>
 
     <div class="article-meta">
       <span>
