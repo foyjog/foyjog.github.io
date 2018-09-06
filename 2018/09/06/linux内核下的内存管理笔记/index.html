@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+
+
+  <html class="dark page-post">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>linux内核下的内存管理浅析 | foyjog</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="二进制,破解,内核安全" />
+  
+
+  <meta name="description" content="关于内核内存因为在做内核方面的技术,所以想要对内核内存管理做一些分析,之前看雪的老哥给我发了一些他对physmap见解,果然大佬就是大佬,做什么都能看到很深的点.关于physmap在32位下其实就是ZONE_NORMAL区域,在内核分配内存的时候,一般都是从ZONE_NORMAL区域开始分配.而mmap一开始会在ZONE_HIGHMEM进行分配,一旦ZONE_HIGHMEM区域不够,就会从ZONE">
+<meta property="og:type" content="article">
+<meta property="og:title" content="linux内核下的内存管理浅析">
+<meta property="og:url" content="https://foyjog.github.io/2018/09/06/linux内核下的内存管理笔记/index.html">
+<meta property="og:site_name" content="foyjog">
+<meta property="og:description" content="关于内核内存因为在做内核方面的技术,所以想要对内核内存管理做一些分析,之前看雪的老哥给我发了一些他对physmap见解,果然大佬就是大佬,做什么都能看到很深的点.关于physmap在32位下其实就是ZONE_NORMAL区域,在内核分配内存的时候,一般都是从ZONE_NORMAL区域开始分配.而mmap一开始会在ZONE_HIGHMEM进行分配,一旦ZONE_HIGHMEM区域不够,就会从ZONE">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://foyjog.github.io/img/mem1.jpg">
+<meta property="og:image" content="https://foyjog.github.io/img/mem2.jpg">
+<meta property="og:image" content="https://foyjog.github.io/img/slab.png">
+<meta property="og:image" content="https://foyjog.github.io/img/slab2.jpg">
+<meta property="og:updated_time" content="2018-09-06T10:26:07.061Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="linux内核下的内存管理浅析">
+<meta name="twitter:description" content="关于内核内存因为在做内核方面的技术,所以想要对内核内存管理做一些分析,之前看雪的老哥给我发了一些他对physmap见解,果然大佬就是大佬,做什么都能看到很深的点.关于physmap在32位下其实就是ZONE_NORMAL区域,在内核分配内存的时候,一般都是从ZONE_NORMAL区域开始分配.而mmap一开始会在ZONE_HIGHMEM进行分配,一旦ZONE_HIGHMEM区域不够,就会从ZONE">
+<meta name="twitter:image" content="https://foyjog.github.io/img/mem1.jpg">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cben" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?57e94d016e201fba3603a8a2b0263af0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+  
+  <script type="text/javascript">
+	(function(){
+	    var bp = document.createElement('script');
+	    var curProtocol = window.location.protocol.split(':')[0];
+	    if (curProtocol === 'https') {
+	        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+	    }
+	    else {
+	        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+	    }
+	    var s = document.getElementsByTagName("script")[0];
+	    s.parentNode.insertBefore(bp, s);
+	})();
+  </script>
+
+
+
+  
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+
+  
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+</head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/tag/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/link/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/atom.xml"
+            rel="noopener noreferrer"
+            target="_blank"
+            >
+            RSS
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/search/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#关于内核内存"><span class="toc-text">关于内核内存</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#两张图"><span class="toc-text">两张图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#关于slab"><span class="toc-text">关于slab</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#关于SLAB着色"><span class="toc-text">关于SLAB着色</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考"><span class="toc-text">参考</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-linux内核下的内存管理笔记" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">linux内核下的内存管理浅析</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2018.09.06</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>foyjog</span>
+        </span>
+      
+
+      
+
+
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <h3 id="关于内核内存"><a href="#关于内核内存" class="headerlink" title="关于内核内存"></a>关于内核内存</h3><p>因为在做内核方面的技术,所以想要对内核内存管理做一些分析,之前看雪的老哥给我发了一些他对physmap见解,果然大佬就是大佬,做什么都能看到很深的点.<br>关于physmap在32位下其实就是ZONE_NORMAL区域,在内核分配内存的时候,一般都是从ZONE_NORMAL区域开始分配.而mmap一开始会在ZONE_HIGHMEM进行分配,一旦ZONE_HIGHMEM区域不够,就会从ZONE_NORMAL区域进行内存分配,所以才有mmap的对象可以覆盖掉内核对象的情况出现.</p>
+<h3 id="两张图"><a href="#两张图" class="headerlink" title="两张图"></a>两张图</h3><p>这两图非常nice,看书的时候内存管理看得我一脸懵逼,这些图总算能让我对内存分配有一些基本了解.</p>
+<p>第一张图:</p>
+<p><img src="/img/mem1.jpg" alt="第一张图"></p>
+<p>在linux内核中，所有的物理内存都用struct page结构来描述，这些对象以数组形式存放，而这个数组的地址就是mem_map。</p>
+<p>第二张图:<br><img src="/img/mem2.jpg" alt="第二张图"></p>
+<p>__alloc_pages是底层的函数用来分配页面.<br>图中显示(我发现4.10.6和2.6.36差别还是很大的= =)do_brk()和do_mmap()都调用了do_mmap_pgoff(),do_mmap_pgoff()调用了get_unmapped_area().</p>
+<blockquote>
+<p>进程调用mmap()时，只是在进程空间内新增了一块相应大小的缓冲区，并设置了相应的访问标识，但并没有建立进程空间到物理页面的映射。因此，第一次访问该空间时，会引发一个缺页异常。 </p>
+<p>Mmap映射在第一次读写的时候，会进入缺页异常处理流程中，最后会调用<br>do_anonymous_page<br>—&gt;alloc_zeroed_user_highpage_movable<br>—&gt;__alloc_zeroed_user_highpage<br>—&gt;alloc_page_vma(GFP_HIGHUSER | movableflags,vma, vaddr);<br>看一下GFP_HIGHUSER定义</p>
+<p>#define GFP_HIGHUSER    (GFP_USER | <strong>GFP_HIGHMEM)
+</strong>GFP_HIGHMEM表示优先从高端内存区分配</p>
+</blockquote>
+<h3 id="关于slab"><a href="#关于slab" class="headerlink" title="关于slab"></a>关于slab</h3><p>slab的话怎么讲,就是内核准备了很多的内存块块,如果你要用我就分配给你.<br>看图:<br><img src="/img/slab.png" alt="第三张图"><br>看,kmalloc有8-8192很多类型的slab,也就是说,kmalloc使用了slab进行内存的分配.<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> __always_inline <span class="keyword">void</span> *__do_kmalloc(<span class="keyword">size_t</span> size, <span class="keyword">gfp_t</span> flags,</span><br><span class="line">					  <span class="keyword">unsigned</span> <span class="keyword">long</span> caller)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">kmem_cache</span> *<span class="title">cachep</span>;</span></span><br><span class="line">	<span class="keyword">void</span> *ret;</span><br><span class="line"></span><br><span class="line">	cachep = kmalloc_slab(size, flags);</span><br><span class="line">	<span class="keyword">if</span> (unlikely(ZERO_OR_NULL_PTR(cachep)))</span><br><span class="line">		<span class="keyword">return</span> cachep;</span><br><span class="line">	ret = slab_alloc(cachep, flags, caller);</span><br><span class="line"></span><br><span class="line">	kasan_kmalloc(cachep, ret, size, flags);</span><br><span class="line">	trace_kmalloc(caller, ret,</span><br><span class="line">		      size, cachep-&gt;size, flags);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>如刚才所有，我们看到有些SLAB的名字比较特别，如TCP,UDP,dquot这些，它们都是专用SLAB，专属于它们自己的模块。而后面这张图，如kmalloc-8，kmalloc-16…还有dma-kmalloc-96，dma-kmalloc-192…这些都是普通SLAB，当需要为一些小数据分配内存时(比如一个结构体)，就会从这些普通SLAB中获取内存。值得注意的是，对于kmalloc-8这些普通SLAB，都有一个对应的dma-kmalloc-8这种类型的普通SLAB，这种类型是专门使用了ZONE-DMA区域的内存，方便用于DMA模式申请内存。</p>
+</blockquote>
+<h3 id="关于SLAB着色"><a href="#关于SLAB着色" class="headerlink" title="关于SLAB着色"></a>关于SLAB着色</h3><blockquote>
+<p>看名字很难理解，其实又很好理解，我们知道内存需要处理时要先放入CPU硬件高速缓存中，而CPU硬件高速缓存与内存的映射方式有多种。在同一个kmem_cache中所有SLAB都是相同大小，都是相同连续长度的页框组成，这样的话在不同SLAB中相同对象号对于页框的首地址的偏移量也相同，这样有很可能导致不同SLAB中相同对象号的对象放入CPU硬件高速缓存时会处于同一行，当我们交替操作这两个对象时，CPU的cache就会交替换入换出，效率就非常差。SLAB着色就是在同一个kmem_cache中对不同的SLAB添加一个偏移量，就让相同对象号的对象不会对齐，也就不会放入硬件高速缓存的同一行中，提高了效率</p>
+</blockquote>
+<p>在SLAB描述符中，最重要的可能就是s_mem和freelist这两个指针。s_mem用于指向这段连续页框中第一个对象，freelist指向空闲对象链表。<br><img src="/img/slab2.jpg" alt="第四张图"></p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://cloud.tencent.com/developer/article/1114226" target="_blank" rel="noopener">https://cloud.tencent.com/developer/article/1114226</a><br><a href="https://www.cnblogs.com/tolimit/p/4566189.html" target="_blank" rel="noopener">https://www.cnblogs.com/tolimit/p/4566189.html</a><br><a href="https://blog.csdn.net/u013837209/article/details/56276809" target="_blank" rel="noopener">https://blog.csdn.net/u013837209/article/details/56276809</a></p>
+
+    
+  </div>
+
+</article>
+
+
+   
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/2018/08/30/CVE-2017-8890-Phoenix-Talon/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="hide pull-right" href="/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+
+   
+      <div class="git"></div>
+   
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/tag/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/link/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/atom.xml"
+              rel="noopener noreferrer"
+              target="_blank"
+              >
+              RSS
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/search/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+
+    
+    
+
+    
+    
+
+    
+
+    
+    
+
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <div id="comment" class="vcomment" ></div>
+    <script>
+        var notify = 'false' == true ? true : false;
+        var verify = 'false' == true ? true : false;
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+            return GUEST_INFO.indexOf(item) > -1
+        });
+        guest_info = guest_info.length == 0 ? GUEST_INFO :guest_info;
+        window.valine = new Valine({
+            el: '.vcomment',
+            notify: notify,
+            verify: verify,
+            appId: "",
+            appKey: "",
+            avatar:'mm',
+            placeholder: "Just go go",
+            guest_info:guest_info,
+            pageSize:'10'
+        });
+    </script>
+  
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+</body>
+</html>
