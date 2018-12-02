@@ -26,7 +26,7 @@
 <meta property="og:image" content="https://foyjog.github.io/img/fastbinattack2.jpg">
 <meta property="og:image" content="https://foyjog.github.io/img/fastbinattack3.jpg">
 <meta property="og:image" content="https://foyjog.github.io/img/fastbinattack4.jpg">
-<meta property="og:updated_time" content="2018-08-07T11:13:20.568Z">
+<meta property="og:updated_time" content="2018-08-07T11:13:20.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="double free之Fastbin Attack">
 <meta name="twitter:description" content="前言抽时间做了一下安恒杯的第十一周周练,其中的一个fastbin attack还是让我学到了知识,在感概自己太菜的同时,还是要一步一个脚印踏实的走下去. 概述pwn题目都很简短,和reverse不一样.123456789101112131415161718192021int add_object()&amp;#123;  signed int size; // eax  size_t v1; // rbx">
@@ -188,7 +188,7 @@
 
 
   <div id="toc" class="toc-article">
-    <strong class="toc-title">Posts List</strong>
+    <strong class="toc-title">文章目录</strong>
     <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#前言"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#概述"><span class="toc-text">概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#泄漏libc地址"><span class="toc-text">泄漏libc地址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#覆盖malloc-hook"><span class="toc-text">覆盖malloc_hook</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#exp"><span class="toc-text">exp</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考"><span class="toc-text">参考</span></a></li></ol>
   </div>
 
@@ -291,7 +291,7 @@
   <span id="cover" class="cover hide"></span>
   <div id="modal-dialog" class="modal-dialog hide-dialog">
     <div class="modal-header">
-      <span id="close" class="btn-close">Close</span>
+      <span id="close" class="btn-close">关闭</span>
     </div>
     <hr>
     <div class="modal-body">

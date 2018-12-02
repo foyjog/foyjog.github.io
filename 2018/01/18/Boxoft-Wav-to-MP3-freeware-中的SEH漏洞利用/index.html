@@ -23,7 +23,7 @@
 <meta property="og:description" content="概述这个是我在吾爱破解看到的一个漏洞，感觉不显得那么复杂，就顺手拿过来研究一下seh的利用。这里写一写我的研究流程，文件在后续连接给出。当然要不了解seh的话还是看一看seh详细介绍即可，文章写得非常好。这个软件功能是一个吧wav文件转换成一个MP3文件，漏洞产生的主要原因是没有对输入的文件做任何的检查，拿过来就直接当wav文件解析了，从而导致的栈溢出。 研究流程 因为是解析文件，所以直接找到cr">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://foyjog.github.io/img/1801191.png">
-<meta property="og:updated_time" content="2018-07-03T08:17:44.160Z">
+<meta property="og:updated_time" content="2018-07-03T08:17:44.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Boxoft Wav to MP3 (freeware)中的SEH漏洞利用">
 <meta name="twitter:description" content="概述这个是我在吾爱破解看到的一个漏洞，感觉不显得那么复杂，就顺手拿过来研究一下seh的利用。这里写一写我的研究流程，文件在后续连接给出。当然要不了解seh的话还是看一看seh详细介绍即可，文章写得非常好。这个软件功能是一个吧wav文件转换成一个MP3文件，漏洞产生的主要原因是没有对输入的文件做任何的检查，拿过来就直接当wav文件解析了，从而导致的栈溢出。 研究流程 因为是解析文件，所以直接找到cr">
@@ -185,7 +185,7 @@
 
 
   <div id="toc" class="toc-article">
-    <strong class="toc-title">Posts List</strong>
+    <strong class="toc-title">文章目录</strong>
     <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#概述"><span class="toc-text">概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#研究流程"><span class="toc-text">研究流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#文件链接"><span class="toc-text">文件链接</span></a></li></ol>
   </div>
 
@@ -282,7 +282,7 @@
   <span id="cover" class="cover hide"></span>
   <div id="modal-dialog" class="modal-dialog hide-dialog">
     <div class="modal-header">
-      <span id="close" class="btn-close">Close</span>
+      <span id="close" class="btn-close">关闭</span>
     </div>
     <hr>
     <div class="modal-body">

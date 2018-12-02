@@ -26,7 +26,7 @@
 <meta property="og:image" content="https://foyjog.github.io/img/mem2.jpg">
 <meta property="og:image" content="https://foyjog.github.io/img/slab.png">
 <meta property="og:image" content="https://foyjog.github.io/img/slab2.jpg">
-<meta property="og:updated_time" content="2018-09-06T10:26:51.951Z">
+<meta property="og:updated_time" content="2018-09-06T10:26:52.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="linux内核下的内存管理笔记">
 <meta name="twitter:description" content="关于内核内存因为在做内核方面的技术,所以想要对内核内存管理做一些分析,之前看雪的老哥给我发了一些他对physmap见解,果然大佬就是大佬,做什么都能看到很深的点.关于physmap在32位下其实就是ZONE_NORMAL区域,在内核分配内存的时候,一般都是从ZONE_NORMAL区域开始分配.而mmap一开始会在ZONE_HIGHMEM进行分配,一旦ZONE_HIGHMEM区域不够,就会从ZONE">
@@ -188,7 +188,7 @@
 
 
   <div id="toc" class="toc-article">
-    <strong class="toc-title">Posts List</strong>
+    <strong class="toc-title">文章目录</strong>
     <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#关于内核内存"><span class="toc-text">关于内核内存</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#两张图"><span class="toc-text">两张图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#关于slab"><span class="toc-text">关于slab</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#关于SLAB着色"><span class="toc-text">关于SLAB着色</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考"><span class="toc-text">参考</span></a></li></ol>
   </div>
 
@@ -292,7 +292,7 @@
   <span id="cover" class="cover hide"></span>
   <div id="modal-dialog" class="modal-dialog hide-dialog">
     <div class="modal-header">
-      <span id="close" class="btn-close">Close</span>
+      <span id="close" class="btn-close">关闭</span>
     </div>
     <hr>
     <div class="modal-body">
