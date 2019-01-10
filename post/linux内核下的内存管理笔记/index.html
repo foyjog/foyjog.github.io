@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8">
+<title>linux内核下的内存管理笔记 - foyjog</title>
+<base href="/">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+<link rel="canonical" href="https://foyjog.github.io/post/linux内核下的内存管理笔记/">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="translucent">
+<meta name="description" content="关于内核内存因为在做内核方面的技术,所以想要对内核内存管理做一些分析,之前看雪的老哥给我发了一些他对physmap见解,果然大佬就是大佬,做什么都能看到很深的点.关于physmap在32位下其实就是ZONE_NORMAL区域,在内核分配内存的时候,一般都是从ZONE_NORMAL区域开始分配.而mmap一开始会在ZONE_HIGHMEM进行分配,一旦ZONE_HIGHMEM区域不够,就会从ZONE">
+<meta property="og:type" content="website">
+<meta property="og:title" content="linux内核下的内存管理笔记">
+<meta property="og:url" content="https://foyjog.github.io/post/linux内核下的内存管理笔记/index.html">
+<meta property="og:site_name" content="foyjog">
+<meta property="og:description" content="关于内核内存因为在做内核方面的技术,所以想要对内核内存管理做一些分析,之前看雪的老哥给我发了一些他对physmap见解,果然大佬就是大佬,做什么都能看到很深的点.关于physmap在32位下其实就是ZONE_NORMAL区域,在内核分配内存的时候,一般都是从ZONE_NORMAL区域开始分配.而mmap一开始会在ZONE_HIGHMEM进行分配,一旦ZONE_HIGHMEM区域不够,就会从ZONE">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://foyjog.github.io/avatar.jpg">
+<meta property="og:updated_time" content="2018-09-06T10:26:52.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="linux内核下的内存管理笔记">
+<meta name="twitter:description" content="关于内核内存因为在做内核方面的技术,所以想要对内核内存管理做一些分析,之前看雪的老哥给我发了一些他对physmap见解,果然大佬就是大佬,做什么都能看到很深的点.关于physmap在32位下其实就是ZONE_NORMAL区域,在内核分配内存的时候,一般都是从ZONE_NORMAL区域开始分配.而mmap一开始会在ZONE_HIGHMEM进行分配,一旦ZONE_HIGHMEM区域不够,就会从ZONE">
+<meta name="twitter:image" content="https://foyjog.github.io/avatar.jpg">
+
+<link rel="stylesheet" href="/fonts.e15b7f98c5fa14803416.css">
+<link rel="stylesheet" href="/styles.192103d5443607e2ac6a.css">
+<script src="/config.e5fb3875a72d057ccacf.js"></script>
+</head>
+<body>
+<is-d2a57d></is-d2a57d>
+<script src="/runtime.ec2944dd8b20ec099bf3.js"></script>
+<script src="/polyfills.801d20023695166b327d.js"></script>
+<script src="/main.7f8fc0a1cc509a2b273e.zh-Hans.js"></script></body>
+</html>

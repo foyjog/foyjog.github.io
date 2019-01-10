@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8">
+<title>Boxoft Wav to MP3 (freeware)中的SEH漏洞利用 - foyjog</title>
+<base href="/">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+<link rel="canonical" href="https://foyjog.github.io/post/Boxoft-Wav-to-MP3-freeware-中的SEH漏洞利用/">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="translucent">
+<meta name="description" content="概述这个是我在吾爱破解看到的一个漏洞，感觉不显得那么复杂，就顺手拿过来研究一下seh的利用。这里写一写我的研究流程，文件在后续连接给出。当然要不了解seh的话还是看一看seh详细介绍即可，文章写得非常好。这个软件功能是一个吧wav文件转换成一个MP3文件，漏洞产生的主要原因是没有对输入的文件做任何的检查，拿过来就直接当wav文件解析了，从而导致的栈溢出。 研究流程 因为是解析文件，所以直接找到cr">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Boxoft Wav to MP3 (freeware)中的SEH漏洞利用">
+<meta property="og:url" content="https://foyjog.github.io/post/Boxoft-Wav-to-MP3-freeware-中的SEH漏洞利用/index.html">
+<meta property="og:site_name" content="foyjog">
+<meta property="og:description" content="概述这个是我在吾爱破解看到的一个漏洞，感觉不显得那么复杂，就顺手拿过来研究一下seh的利用。这里写一写我的研究流程，文件在后续连接给出。当然要不了解seh的话还是看一看seh详细介绍即可，文章写得非常好。这个软件功能是一个吧wav文件转换成一个MP3文件，漏洞产生的主要原因是没有对输入的文件做任何的检查，拿过来就直接当wav文件解析了，从而导致的栈溢出。 研究流程 因为是解析文件，所以直接找到cr">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://foyjog.github.io/avatar.jpg">
+<meta property="og:updated_time" content="2018-07-03T08:17:44.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Boxoft Wav to MP3 (freeware)中的SEH漏洞利用">
+<meta name="twitter:description" content="概述这个是我在吾爱破解看到的一个漏洞，感觉不显得那么复杂，就顺手拿过来研究一下seh的利用。这里写一写我的研究流程，文件在后续连接给出。当然要不了解seh的话还是看一看seh详细介绍即可，文章写得非常好。这个软件功能是一个吧wav文件转换成一个MP3文件，漏洞产生的主要原因是没有对输入的文件做任何的检查，拿过来就直接当wav文件解析了，从而导致的栈溢出。 研究流程 因为是解析文件，所以直接找到cr">
+<meta name="twitter:image" content="https://foyjog.github.io/avatar.jpg">
+
+<link rel="stylesheet" href="/fonts.e15b7f98c5fa14803416.css">
+<link rel="stylesheet" href="/styles.192103d5443607e2ac6a.css">
+<script src="/config.e5fb3875a72d057ccacf.js"></script>
+</head>
+<body>
+<is-d2a57d></is-d2a57d>
+<script src="/runtime.ec2944dd8b20ec099bf3.js"></script>
+<script src="/polyfills.801d20023695166b327d.js"></script>
+<script src="/main.7f8fc0a1cc509a2b273e.zh-Hans.js"></script></body>
+</html>
